@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     {
         maxCharacters = 3;
         characters = new Character[maxCharacters];
-        characters[0] = Instantiate(characterPrefab, transform.position, Quaternion.identity) as Character;
-        characters[1] = Instantiate(characterPrefab, transform.position, Quaternion.identity) as Character;
-        characters[2] = Instantiate(characterPrefab, transform.position, Quaternion.identity) as Character;
+
+        for (int i = 0; i < maxCharacters; i++)
+        {
+            characters[i] = characterPrefab.CreateCopy(transform.position);
+        }
     }
 
     void Update()

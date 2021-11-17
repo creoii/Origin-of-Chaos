@@ -9,14 +9,15 @@ public class WeaponItem : Item
 
     private float attackTime = 0f;
 
-    public WeaponItem(string name, string description, ItemType itemType, ItemRarity rarity, int maxSigils, Attack[] attacks) : base(name, description, itemType.ToString(), rarity.ToString(), maxSigils)
+    public WeaponItem(string name, string description, string sprite, ItemType itemType, ItemRarity rarity, int maxSigils, Attack[] attacks, float rateOfFire) : base(name, description, sprite, itemType.ToString(), rarity.ToString(), maxSigils)
     {
+        this.rateOfFire = rateOfFire;
         this.attacks = attacks;
     }
 
     public void Use(Character character)
     {
-        if (attackTime >= 5f / character.stats.AttackSpeed / rateOfFire)
+        if (attackTime >= 5f / character.stats.attackSpeed / rateOfFire)
         {
             foreach (Attack attack in attacks)
             {

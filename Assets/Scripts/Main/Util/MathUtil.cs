@@ -8,4 +8,9 @@ public class MathUtil
     {
         return Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
     }
+
+    public static Vector3 GetDirection(Vector3 reference, float angle)
+    {
+        return new Vector3(reference.x + Mathf.Cos(angle * Mathf.Deg2Rad), reference.y + Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
+    }
 }

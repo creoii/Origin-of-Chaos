@@ -17,6 +17,15 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * attack.speed * Time.deltaTime);
+
+        if (attack.acceleration != null)
+        {
+            if (attack.acceleration.rate != 0f)
+            {
+                attack.speed += attack.acceleration.rate;
+            }
+        }
+
         life += Time.deltaTime;
     }
 

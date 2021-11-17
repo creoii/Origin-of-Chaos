@@ -1,11 +1,14 @@
+using System;
+
+[Serializable]
 public class StatData
 {
-    public float Speed { get; set; }
-    public float AttackSpeed { get; set; }
+    public float speed;
+    public float attackSpeed;
 
     public StatData(float speed, float attackSpeed)
     {
-        this.Speed = speed;
-        this.AttackSpeed = attackSpeed;
+        this.speed = speed;
+        this.attackSpeed = attackSpeed;
     }
 }

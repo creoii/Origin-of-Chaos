@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y != 0)
         {
-            if (Input.mouseScrollDelta.y > 0 && Camera.main.fieldOfView > 1)
+            if (Input.mouseScrollDelta.y > 0 && Camera.main.fieldOfView > 10)
             {
                 Camera.main.fieldOfView -= 5f;
             }
@@ -20,6 +20,12 @@ public class CameraController : MonoBehaviour
                 Camera.main.fieldOfView += 5f;
             }
         }
-        transform.position = Vector3.Lerp(transform.position, character.transform.position + offset, lerpSpeed * Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, character.transform.position + offset, lerpSpeed * Time.deltaTime);
+    }
+
+    private void LateUpdate()
+    {
+        transform.position = character.transform.position + offset;
+        transform.rotation = character.transform.rotation;
     }
 }

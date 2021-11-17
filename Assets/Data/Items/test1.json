@@ -1,7 +1,20 @@
 {
 	"name": "Test 1",
 	"description": "A test item",
+	"sprite": "test_1",
 	"itemType": "Spell",
 	"rarity": "Mythical",
-	"maxSigils": 3
+	"maxSigils": 3,
+	"cooldown": 0.5,
+	
+	"attacks": [
+		{
+			"sprite": "fire_bolt",
+			"speed": 1.5,
+			"lifetime": 4.0,
+			"projectileCount": 12,
+			"angleGap": 30,
+			"onMouse": true
+		}
+	]
 }

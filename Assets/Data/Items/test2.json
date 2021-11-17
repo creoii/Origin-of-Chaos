@@ -1,6 +1,7 @@
 {
 	"name": "Test 2",
 	"description": "A test item",
+	"sprite": "test_3",
 	"itemType": "Sigil",
 	"rarity": "Divine"
 }

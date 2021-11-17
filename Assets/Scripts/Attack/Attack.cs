@@ -4,22 +4,27 @@ using UnityEngine;
 [Serializable]
 public class Attack
 {
+    public string sprite;
     public float lifetime;
     public float speed;
     public int projectileCount = 1;
     public int angleGap = 0;
-    public string sprite;
+    public bool onMouse = false;
 
-    public Attack(float lifetime, float speed, int projectileCount, int angleGap, string sprite)
+    public MultiplierData acceleration = null;
+
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleGap, bool onMouse, MultiplierData acceleration)
     {
+        this.sprite = sprite;
         this.lifetime = lifetime;
         this.speed = speed;
         this.projectileCount = projectileCount;
         this.angleGap = angleGap;
-        this.sprite = sprite;
+        this.onMouse = onMouse;
+        this.acceleration = acceleration;
     }
 
-    public Attack(float lifetime, float speed, string sprite) : this(lifetime, speed, 1, 0, sprite)
+    public Attack(string sprite, float lifetime, float speed) : this(sprite, lifetime, speed, 1, 0, false, null)
     {
 
     }
@@ -28,7 +33,7 @@ public class Attack
     {
         if (projectileCount > 0)
         {
-            Vector3 position = character.transform.position;
+            Vector3 position = onMouse ? MouseUtil.GetMouseWorldPos() : character.transform.position;
             float angle = MouseUtil.GetMouseAngle(position);
             if (angle < 0) angle += 360f;
             if (projectileCount > 1) angle -= angleGap * (((projectileCount - 1f) / 2f) + 1);
@@ -38,7 +43,7 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    obj.GetComponent<Projectile>().SetProperties(position, this, MouseUtil.GetMouseDirection(position, angle += angleGap));
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection(position, angle += angleGap));
                     obj.SetActive(true);
                 }
             }

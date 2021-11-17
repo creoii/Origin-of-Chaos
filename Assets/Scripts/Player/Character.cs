@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -30,36 +29,45 @@ public class Character : MonoBehaviour
     void Update()
     {
         UpdateMovement();
-        UpdateInventory();
+        UpdateInventory(playerClass.classInventory);
         if (Input.GetKey(KeyCode.Mouse0)) UpdateAttacks(playerClass.classInventory);
-        if (Input.GetKeyDown(KeyCode.Space)) UpdateAbilities();
-        if (Input.GetKeyDown(KeyCode.X)) UpdateLeveling(.5f);
+        if (Input.GetKey(KeyCode.Space)) UpdateAbilities();
     }
 
     void UpdateMovement()
     {
-        if (stats.Speed > 0)
+        if (stats.speed > 0)
         {
-            movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * stats.Speed * Time.deltaTime;
+            movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * stats.speed * Time.deltaTime;
             if (movement != Vector3.zero)
             {
                 transform.position += movement * movementModifier;
             }
         }
+
+        if (Input.GetKey(Game.settings.rotateLeftKey)) transform.Rotate(Vector3.forward * Game.settings.rotationSpeed * Time.deltaTime);
+        if (Input.GetKey(Game.settings.rotateRightKey)) transform.Rotate(Vector3.forward * -Game.settings.rotationSpeed * Time.deltaTime);
+        if (Input.GetKeyDown(Game.settings.resetRotationKey)) transform.rotation = Quaternion.identity;
     }
 
-    void UpdateInventory()
+    void UpdateInventory(ClassInventory inventory)
     {
-        if (!playerClass.classInventory.slots[0].empty)
+        if (!inventory.slots[0].empty)
         {
-            WeaponItem weapon = playerClass.classInventory.slots[0].Item as WeaponItem;
+            WeaponItem weapon = inventory.slots[0].Item as WeaponItem;
             weapon.IncrementAttackTime(Time.deltaTime);
+        }
+
+        if (!inventory.slots[1].empty)
+        {
+            AbilityItem ability = inventory.slots[1].Item as AbilityItem;
+            ability.IncrementAttackTime(Time.deltaTime);
         }
     }
 
     void UpdateAttacks(ClassInventory inventory)
     {
-        if (stats.AttackSpeed > 0)
+        if (stats.attackSpeed > 0)
         {
             if (inventory.slots[0] != null || (!inventory.slots[0].empty))
             {
@@ -74,14 +82,10 @@ public class Character : MonoBehaviour
         if (playerClass.classInventory.slots[1] != null || (!playerClass.classInventory.slots[1].empty))
         {
             AbilityItem ability = playerClass.classInventory.slots[1].Item as AbilityItem;
-            ability.Activate();
+            ability.Activate(this);
         }
     }
 
-    /*
-     * This method should only be called when recieving xp
-     * in order to stop unnecessary checks
-     */
     void UpdateLeveling(float xp)
     {
         level.Xp += xp;
@@ -91,5 +95,13 @@ public class Character : MonoBehaviour
             if (level.Level < 40) ++level.Level;
         }
         Debug.Log("level");
+    }
+
+    public Character CreateCopy(Vector3 position)
+    {
+        Character ret = Instantiate(this, position, Quaternion.identity);
+        ret.playerClass = playerClass;
+        ret.stats = stats;
+        return ret;
     }
 }
