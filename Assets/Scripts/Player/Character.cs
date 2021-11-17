@@ -3,7 +3,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public ObjectPool pool;
-    public PlayerClass playerClass = Classes.WARRIOR;
+    public PlayerClass playerClass = Classes.Warrior;
     public StatData stats;
     public LevelData level = new LevelData();
 
@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
         UpdateMovement();
         UpdateInventory(playerClass.classInventory);
         if (Input.GetKey(KeyCode.Mouse0)) UpdateAttacks(playerClass.classInventory);
-        if (Input.GetKey(KeyCode.Space)) UpdateAbilities();
+        if (Input.GetKey(Game.settings.useAbilityKey)) UpdateAbilities();
     }
 
     void UpdateMovement()
@@ -99,7 +99,6 @@ public class Character : MonoBehaviour
         {
             if (level.Level < 40) ++level.Level;
         }
-        Debug.Log("level");
     }
 
     public Character CreateCopy(Vector3 position)

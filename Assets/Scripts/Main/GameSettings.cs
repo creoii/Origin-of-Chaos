@@ -6,6 +6,7 @@ public class GameSettings
     public string upKey = "w";
     public string downKey = "s";
     public string rightKey = "d";
+    public string useAbilityKey = "space";
     public string rotateLeftKey = "q";
     public string rotateRightKey = "e";
     public string resetRotationKey = "x";
