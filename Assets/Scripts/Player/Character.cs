@@ -38,10 +38,15 @@ public class Character : MonoBehaviour
     {
         if (stats.speed > 0)
         {
-            movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * stats.speed * Time.deltaTime;
+            if (Input.GetKey(Game.settings.leftKey)) movement += Vector3.left;
+            if (Input.GetKey(Game.settings.downKey)) movement += Vector3.down;
+            if (Input.GetKey(Game.settings.upKey)) movement += Vector3.up;
+            if (Input.GetKey(Game.settings.rightKey)) movement += Vector3.right;
+            movement *= stats.speed * Time.deltaTime;
             if (movement != Vector3.zero)
             {
                 transform.position += movement * movementModifier;
+                movement = Vector3.zero;
             }
         }
 
