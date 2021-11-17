@@ -1,0 +1,13 @@
+
+*.meta
+Library/*
+Temp/*
+Logs/*
+obj/*
+ProjectSettings/*
+UserSettings/*
+Packages/*
+.vs/*
+.vsconfig
+Assembly-CSharp.csproj
+Origin of Chaos.sln

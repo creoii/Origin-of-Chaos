@@ -1,0 +1,7 @@
+{
+	"name": "Test 1",
+	"description": "A test item",
+	"itemType": "Spell",
+	"rarity": "Mythical",
+	"maxSigils": 3
+}
