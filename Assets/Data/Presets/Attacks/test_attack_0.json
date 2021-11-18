@@ -6,8 +6,8 @@
 	"projectileCount": 2,
 	"angleGap": 15,
 	"acceleration": {
-		"rate": -0.001,
-		"multiplier": 1.8,
+		"rate": -0.003,
+		"multiplier": 1.5,
 		"offset": 1.0
 	}
 }

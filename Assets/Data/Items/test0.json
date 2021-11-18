@@ -12,13 +12,15 @@
 		},
 		{
 			"name": "test_attack_0",
-			"projectileCount": 3,
-			"angleGap": 5,
-			"acceleration": {
-				"rate": -0.02,
-				"multiplier": 1.2,
-				"offset": 0.0
-			}
+			"angleOffset": 90
+		},
+		{
+			"name": "test_attack_0",
+			"angleOffset": 180
+		},
+		{
+			"name": "test_attack_0",
+			"angleOffset": 270
 		}
 	]
 }
