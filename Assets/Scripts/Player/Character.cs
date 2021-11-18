@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Character : MonoBehaviour
     public PlayerClass playerClass = Classes.Warrior;
     public StatData stats;
     public LevelData level = new LevelData();
+    public List<StatusEffect> activeEffects = new List<StatusEffect>();
 
     private Vector3 movement;
     private float movementModifier = .1f;
@@ -31,6 +33,13 @@ public class Character : MonoBehaviour
         UpdateInventory(playerClass.classInventory);
         if (Input.GetKey(KeyCode.Mouse0)) UpdateAttacks(playerClass.classInventory);
         if (Input.GetKey(Game.settings.useAbilityKey)) UpdateAbilities();
+
+        //for testing status effects
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            activeEffects.Add(StatusEffectBuilder.statusEffects[0].WithDuration(10f).WithStrengthMultiplier(1.5f));
+            UpdateActiveEffects();
+        }
     }
 
     void UpdateMovement()
@@ -89,6 +98,14 @@ public class Character : MonoBehaviour
         {
             AbilityItem ability = playerClass.classInventory.slots[1].item as AbilityItem;
             ability.Activate(this);
+        }
+    }
+
+    void UpdateActiveEffects()
+    {
+        foreach (StatusEffect effect in activeEffects)
+        {
+            StartCoroutine(effect.Apply(this));
         }
     }
 
