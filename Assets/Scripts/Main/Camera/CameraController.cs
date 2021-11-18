@@ -21,10 +21,6 @@ public class CameraController : MonoBehaviour
             }
         }
         //transform.position = Vector3.Lerp(transform.position, character.transform.position + offset, lerpSpeed * Time.deltaTime);
-    }
-
-    private void LateUpdate()
-    {
         transform.position = character.transform.position + offset;
         transform.rotation = character.transform.rotation;
     }

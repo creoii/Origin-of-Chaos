@@ -11,20 +11,36 @@ public class Attack
     public int projectileCount = 1;
     public int angleGap = 0;
     public bool onMouse = false;
-    public float[] xOffsets;
-    public float[] yOffsets;
 
     public MultiplierData acceleration = null;
 
-    private float[] FillOffsets(float[] one, float[] two)
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleGap, bool onMouse, MultiplierData acceleration)
     {
-        for (int i = 0; i < projectileCount; ++i)
-        {
-            if (i < two.Length) one[i] = two[i];
-            else one[i] = 0f;
-        }
+        this.sprite = sprite;
+        this.lifetime = lifetime;
+        this.speed = speed;
+        this.projectileCount = projectileCount;
+        this.angleGap = angleGap;
+        this.onMouse = onMouse;
+        this.acceleration = acceleration;
+    }
 
-        return one;
+    public Attack(string sprite, float lifetime, float speed) : this(sprite, lifetime, speed, 1, 0, false, null)
+    {
+
+    }
+
+    public static Attack Override(Attack one, Attack two)
+    {
+        return new Attack(
+            two.sprite == null ? one.sprite : two.sprite,
+            two.lifetime == 0 ? one.lifetime : two.lifetime,
+            two.speed == 0 ? one.speed : two.speed,
+            two.projectileCount == 0 ? one.projectileCount : two.projectileCount,
+            two.angleGap == 0 ? one.angleGap : two.angleGap,
+            two.onMouse,
+            MultiplierData.Override(one.acceleration, two.acceleration)
+        );
     }
 
     public void Shoot(Character character, ObjectPool pool)
@@ -41,8 +57,6 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    if (xOffsets != null) position.x += xOffsets[i];
-                    if (yOffsets != null) position.y += yOffsets[i];
                     obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection(position, angle += angleGap));
                     obj.SetActive(true);
                 }

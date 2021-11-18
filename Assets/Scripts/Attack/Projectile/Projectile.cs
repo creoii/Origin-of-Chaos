@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
     public Attack attack;
     public Vector3 direction;
     public float speed;
-    public float angle;
+    public float rate;
     private float life;
 
     public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction)
@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
         transform.position = position;
         this.attack = attack;
         speed = attack.speed;
-        angle = 0f;
+        rate = attack.acceleration.rate;
         this.direction = direction;
         return this;
     }
@@ -26,7 +26,10 @@ public class Projectile : MonoBehaviour
         {
             if (attack.acceleration.rate != 0f)
             {
-                if (life >= attack.acceleration.offset) speed += attack.acceleration.rate;
+                if (life >= attack.acceleration.offset)
+                {
+                    speed += rate * attack.acceleration.multiplier;
+                }
             }
         }
 

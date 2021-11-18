@@ -25,7 +25,7 @@ public class WeaponItem : Item
             {
                 foreach (Attack attack1 in AttackPresetBuilder.attacks)
                 {
-                    if (attacks[i].name == attack1.name) attacks[i] = attack1;
+                    if (attacks[i].name == attack1.name) attacks[i] = Attack.Override(attack1, attacks[i]);
                 }
             }
         }

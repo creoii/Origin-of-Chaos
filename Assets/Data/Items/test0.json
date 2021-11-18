@@ -6,10 +6,19 @@
 	"rarity": "Common",
 	"maxSigils": 2,
 	"rateOfFire": 4.5,
-	
 	"attacks": [
 		{
 			"name": "test_attack_0"
+		},
+		{
+			"name": "test_attack_0",
+			"projectileCount": 3,
+			"angleGap": 5,
+			"acceleration": {
+				"rate": -0.02,
+				"multiplier": 1.2,
+				"offset": 0.0
+			}
 		}
 	]
 }

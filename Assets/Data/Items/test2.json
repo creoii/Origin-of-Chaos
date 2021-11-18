@@ -4,7 +4,6 @@
 	"sprite": "test_3",
 	"itemType": "Sigil",
 	"rarity": "Divine",
-	
 	"cooldown": 2.0,
 	"attacks": [
 		{

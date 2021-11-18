@@ -6,18 +6,17 @@
 	"rarity": "Mythical",
 	"maxSigils": 3,
 	"cooldown": 0.5,
-	
 	"attacks": [
 		{
 			"sprite": "fire_bolt",
-			"speed": 1.5,
+			"speed": 1.0,
 			"lifetime": 2.0,
 			"projectileCount": 18,
 			"angleGap": 20,
 			"onMouse": true,
-			
 			"acceleration": {
-				"rate": -0.005
+				"rate": -0.01,
+				"min": 0.0
 			}
 		}
 	]
