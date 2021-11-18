@@ -1,7 +1,7 @@
 {
 	"name": "Test 0",
 	"description": "A test item",
-	"sprite": "test_0",
+	"sprite": "malice",
 	"itemType": "Sword",
 	"rarity": "Common",
 	"maxSigils": 2,

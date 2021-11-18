@@ -9,7 +9,7 @@ public class ClassInventory : Inventory
         this.classItemTypes = classItemTypes;
         for (int i = 0; i < 4; i++)
         {
-            this.slots[i].slotType = classItemTypes[i];
+            slots[i].slotType = classItemTypes[i];
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpriteUtil
 {
@@ -9,14 +10,18 @@ public class SpriteUtil
         {
             byte[] data = File.ReadAllBytes(path);
             Texture2D texture = new Texture2D(2, 2);
-            if (texture.LoadImage(data))
-                return texture;
+            if (texture.LoadImage(data)) return texture;
         }
         return null;
     }
 
-    public static void SetSpriteRenderer(SpriteRenderer spriteRenderer, string path)
+    public static void SetSprite(SpriteRenderer spriteRenderer, string path)
     {
         spriteRenderer.sprite = Resources.Load<Sprite>(path);
+    }
+
+    public static void SetSprite(Image image, string path)
+    {
+        image.sprite = Resources.Load<Sprite>(path);
     }
 }

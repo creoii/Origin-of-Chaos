@@ -22,8 +22,7 @@ public class Character : MonoBehaviour
         playerClass.classInventory.slots[0].SetItem(ItemBuilder.weapons[0]);
         playerClass.classInventory.slots[1].SetItem(ItemBuilder.abilities[0]);
 
-        //This won't be rewritten for a while I hope
-        SpriteUtil.SetSpriteRenderer(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
+        SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
     }
 
     void Update()
@@ -59,7 +58,7 @@ public class Character : MonoBehaviour
     {
         if (!inventory.slots[0].empty)
         {
-            WeaponItem weapon = inventory.slots[0].Item as WeaponItem;
+            WeaponItem weapon = inventory.slots[0].item as WeaponItem;
             weapon.Start();
             weapon.sigils[0] = ItemBuilder.sigils[0];
             weapon.IncrementAttackTime(Time.deltaTime);
@@ -67,7 +66,7 @@ public class Character : MonoBehaviour
 
         if (!inventory.slots[1].empty)
         {
-            AbilityItem ability = inventory.slots[1].Item as AbilityItem;
+            AbilityItem ability = inventory.slots[1].item as AbilityItem;
             ability.IncrementAttackTime(Time.deltaTime);
         }
     }
@@ -78,7 +77,7 @@ public class Character : MonoBehaviour
         {
             if (inventory.slots[0] != null || (!inventory.slots[0].empty))
             {
-                WeaponItem weapon = inventory.slots[0].Item as WeaponItem;
+                WeaponItem weapon = inventory.slots[0].item as WeaponItem;
                 weapon.Use(this);
             }
         }
@@ -88,7 +87,7 @@ public class Character : MonoBehaviour
     {
         if (playerClass.classInventory.slots[1] != null || (!playerClass.classInventory.slots[1].empty))
         {
-            AbilityItem ability = playerClass.classInventory.slots[1].Item as AbilityItem;
+            AbilityItem ability = playerClass.classInventory.slots[1].item as AbilityItem;
             ability.Activate(this);
         }
     }

@@ -2,7 +2,7 @@
 {
     public ItemType slotType = ItemType.All;
     public bool empty = true;
-    public Item Item { get; set; }
+    public Item item;
 
     public Slot(ItemType slotType)
     {
@@ -11,7 +11,7 @@
 
     public Slot()
     {
-        this.slotType = ItemType.All;
+        slotType = ItemType.All;
     }
 
     public bool CanSetItem(Item item)
@@ -22,13 +22,13 @@
 
     public void SetItem(Item item)
     {
-        this.Item = item;
+        this.item = item;
         empty = false;
     }
 
     public void RemoveItem()
     {
-        this.Item = null;
+        item = null;
         empty = true;
     }
 }

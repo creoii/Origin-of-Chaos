@@ -34,7 +34,7 @@ public class WeaponItem : Item
 
     public void Use(Character character)
     {
-        if (attackTime >= 5f / character.stats.attackSpeed / rateOfFire)
+        if (attackTime >= 20f / character.stats.attackSpeed / rateOfFire)
         {
             foreach (Attack attack in attacks)
             {

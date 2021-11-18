@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
 
     void OnEnable()
     {
-        SpriteUtil.SetSpriteRenderer(GetComponent<SpriteRenderer>(), "Sprites/Projectiles/" + attack.sprite);
+        SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Projectiles/" + attack.sprite);
         Invoke("Disable", attack.lifetime);
     }
 
