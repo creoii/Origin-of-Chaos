@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-public enum ItemType
+﻿public enum ItemType
 {
     [Item.ItemTypeAttribute(Item.EquipType.Weapon)] Sword,
     [Item.ItemTypeAttribute(Item.EquipType.Weapon)] Staff,

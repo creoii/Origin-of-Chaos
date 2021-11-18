@@ -5,15 +5,20 @@
 	"itemType": "Sword",
 	"rarity": "Common",
 	"maxSigils": 2,
-	"rateOfFire": 6.0,
+	"rateOfFire": 4.5,
 	
 	"attacks": [
 		{
 			"sprite": "void_bolt",
 			"speed": 1.0,
-			"lifetime": 5.0,
-			"projectileCount": 2,
-			"angleGap": 30
+			"lifetime": 4.0,
+			"projectileCount": 6,
+			"angleGap": 60,
+			
+			"acceleration": {
+				"rate": -0.5,
+				"offset": 2.0
+			}
 		}
 	]
 }

@@ -11,10 +11,14 @@
 		{
 			"sprite": "fire_bolt",
 			"speed": 1.5,
-			"lifetime": 4.0,
-			"projectileCount": 12,
-			"angleGap": 30,
-			"onMouse": true
+			"lifetime": 2.0,
+			"projectileCount": 18,
+			"angleGap": 20,
+			"onMouse": true,
+			
+			"acceleration": {
+				"rate": -0.5
+			}
 		}
 	]
 }

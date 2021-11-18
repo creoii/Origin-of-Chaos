@@ -4,25 +4,27 @@ public class Projectile : MonoBehaviour
 {
     public Attack attack;
     public Vector3 direction;
+    public float speed;
     private float life;
 
     public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction)
     {
         transform.position = position;
         this.attack = attack;
+        speed = attack.speed;
         this.direction = direction;
         return this;
     }
 
     void Update()
     {
-        transform.Translate(direction * attack.speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.deltaTime);
 
         if (attack.acceleration != null)
         {
             if (attack.acceleration.rate != 0f)
             {
-                attack.speed += attack.acceleration.rate;
+                if (life >= attack.acceleration.offset) speed += attack.acceleration.rate * .01f;
             }
         }
 
