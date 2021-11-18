@@ -10,10 +10,12 @@ public class Attack
     public int projectileCount = 1;
     public int angleGap = 0;
     public bool onMouse = false;
+    public float[] xOffsets;
+    public float[] yOffsets;
 
     public MultiplierData acceleration = null;
 
-    public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleGap, bool onMouse, MultiplierData acceleration)
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleGap, bool onMouse, float[] xOffsets, float[] yOffsets, MultiplierData acceleration)
     {
         this.sprite = sprite;
         this.lifetime = lifetime;
@@ -21,12 +23,25 @@ public class Attack
         this.projectileCount = projectileCount;
         this.angleGap = angleGap;
         this.onMouse = onMouse;
+        this.xOffsets = FillOffsets(this.xOffsets, xOffsets);
+        this.yOffsets = FillOffsets(this.yOffsets, yOffsets);
         this.acceleration = acceleration;
     }
 
-    public Attack(string sprite, float lifetime, float speed) : this(sprite, lifetime, speed, 1, 0, false, null)
+    public Attack(string sprite, float lifetime, float speed) : this(sprite, lifetime, speed, 1, 0, false, new float[1] {0}, new float[1] {0}, null)
     {
 
+    }
+
+    private float[] FillOffsets(float[] one, float[] two)
+    {
+        for (int i = 0; i < projectileCount; ++i)
+        {
+            if (i < two.Length) one[i] = two[i];
+            else one[i] = 0f;
+        }
+
+        return one;
     }
 
     public void Shoot(Character character, ObjectPool pool)
@@ -43,6 +58,8 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
+                    if (xOffsets != null) position.x += xOffsets[i];
+                    if (yOffsets != null) position.y += yOffsets[i];
                     obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection(position, angle += angleGap));
                     obj.SetActive(true);
                 }

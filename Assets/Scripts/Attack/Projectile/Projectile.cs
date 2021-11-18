@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
     public Attack attack;
     public Vector3 direction;
     public float speed;
+    public float angle;
     private float life;
 
     public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction)
@@ -12,6 +13,7 @@ public class Projectile : MonoBehaviour
         transform.position = position;
         this.attack = attack;
         speed = attack.speed;
+        angle = 0f;
         this.direction = direction;
         return this;
     }

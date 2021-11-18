@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerpSpeed: 10
   offset: {x: 0, y: 0, z: -1}
-  character: {fileID: 1415960451}
+  character: {fileID: 1415960450}
 --- !u!1 &1405135360
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8257331463092293970, guid: e00e5db4b64e0374ba49ff43f20967c5, type: 3}
   pool: []
-  startCount: 100
+  startCount: 306
 --- !u!1 &1415960446
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +293,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1415960449}
   - component: {fileID: 1415960450}
-  - component: {fileID: 1415960451}
   - component: {fileID: 1415960452}
   m_Layer: 0
   m_Name: Character
@@ -325,28 +324,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415960446}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93944aba1993cf04c885d093325774bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 346503542088012978, guid: 85b34501361bcb344af5a560708aeedc, type: 3}
-  maxCharacters: 0
-  characters: []
-  currentCharacter: 0
---- !u!114 &1415960451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415960446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1c57f7de0c6df4e947676837cf15d8, type: 3}
+  m_Script: {fileID: 11500000, guid: d9d7e1fe4efb7144f854a5bc267e37fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1405135362}
+  stats:
+    speed: 0
+    attackSpeed: 0
 --- !u!212 &1415960452
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -388,7 +374,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
