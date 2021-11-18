@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
         playerClass.classInventory.slots[0].SetItem(ItemBuilder.weapons[0]);
         playerClass.classInventory.slots[1].SetItem(ItemBuilder.abilities[0]);
 
+        StartInventory(playerClass.classInventory);
+
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
     }
 
@@ -63,13 +65,18 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(Game.settings.resetRotationKey)) transform.rotation = Quaternion.identity;
     }
 
+    void StartInventory(ClassInventory inventory)
+    {
+        WeaponItem weapon = inventory.slots[0].item as WeaponItem;
+        weapon.Start();
+        weapon.sigils[0] = ItemBuilder.sigils[0];
+    }
+
     void UpdateInventory(ClassInventory inventory)
     {
         if (!inventory.slots[0].empty)
         {
             WeaponItem weapon = inventory.slots[0].item as WeaponItem;
-            weapon.Start();
-            weapon.sigils[0] = ItemBuilder.sigils[0];
             weapon.IncrementAttackTime(Time.deltaTime);
         }
 

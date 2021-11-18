@@ -60,7 +60,7 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection(position, angle += angleGap));
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection(position, angle += angleGap).normalized);
                     obj.SetActive(true);
                 }
             }

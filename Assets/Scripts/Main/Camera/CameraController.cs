@@ -11,11 +11,11 @@ public class CameraController : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y != 0)
         {
-            if (Input.mouseScrollDelta.y > 0 && Camera.main.fieldOfView > 10)
+            if (Input.mouseScrollDelta.y > 0 && Camera.main.fieldOfView > 20)
             {
                 Camera.main.fieldOfView -= 5f;
             }
-            else if (Input.mouseScrollDelta.y < 0 && Camera.main.fieldOfView < 100)
+            else if (Input.mouseScrollDelta.y < 0 && Camera.main.fieldOfView < 120)
             {
                 Camera.main.fieldOfView += 5f;
             }

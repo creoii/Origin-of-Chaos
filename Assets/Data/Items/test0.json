@@ -8,19 +8,12 @@
 	"rateOfFire": 4.5,
 	"attacks": [
 		{
-			"name": "test_attack_0"
+			"name": "test_attack_0",
+			"angleOffset": -20
 		},
 		{
 			"name": "test_attack_0",
-			"angleOffset": 90
-		},
-		{
-			"name": "test_attack_0",
-			"angleOffset": 180
-		},
-		{
-			"name": "test_attack_0",
-			"angleOffset": 270
+			"angleOffset": 20
 		}
 	]
 }
