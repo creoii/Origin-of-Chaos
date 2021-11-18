@@ -60,6 +60,8 @@ public class Character : MonoBehaviour
         if (!inventory.slots[0].empty)
         {
             WeaponItem weapon = inventory.slots[0].Item as WeaponItem;
+            weapon.Start();
+            weapon.sigils[0] = ItemBuilder.sigils[0];
             weapon.IncrementAttackTime(Time.deltaTime);
         }
 

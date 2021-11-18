@@ -15,24 +15,6 @@ public class Attack
 
     public MultiplierData acceleration = null;
 
-    public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleGap, bool onMouse, float[] xOffsets, float[] yOffsets, MultiplierData acceleration)
-    {
-        this.sprite = sprite;
-        this.lifetime = lifetime;
-        this.speed = speed;
-        this.projectileCount = projectileCount;
-        this.angleGap = angleGap;
-        this.onMouse = onMouse;
-        this.xOffsets = FillOffsets(this.xOffsets, xOffsets);
-        this.yOffsets = FillOffsets(this.yOffsets, yOffsets);
-        this.acceleration = acceleration;
-    }
-
-    public Attack(string sprite, float lifetime, float speed) : this(sprite, lifetime, speed, 1, 0, false, new float[1] {0}, new float[1] {0}, null)
-    {
-
-    }
-
     private float[] FillOffsets(float[] one, float[] two)
     {
         for (int i = 0; i < projectileCount; ++i)
