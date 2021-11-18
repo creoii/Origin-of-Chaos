@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public class Attack
 {
+    public string name = null;
     public string sprite;
     public float lifetime;
     public float speed;

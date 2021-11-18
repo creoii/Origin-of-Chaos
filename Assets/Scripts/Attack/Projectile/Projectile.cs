@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         {
             if (attack.acceleration.rate != 0f)
             {
-                if (life >= attack.acceleration.offset) speed += attack.acceleration.rate * .01f;
+                if (life >= attack.acceleration.offset) speed += attack.acceleration.rate;
             }
         }
 

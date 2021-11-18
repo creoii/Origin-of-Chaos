@@ -1,0 +1,13 @@
+{
+	"name": "test_attack_0",
+	"sprite": "void_bolt",
+	"speed": 1.5,
+	"lifetime": 4.0,
+	"projectileCount": 2,
+	"angleGap": 15,
+	
+	"acceleration": {
+		"rate": -0.005,
+		"offset": 2.5
+	}
+}

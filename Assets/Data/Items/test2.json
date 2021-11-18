@@ -5,18 +5,14 @@
 	"itemType": "Sigil",
 	"rarity": "Divine",
 	
-	"cooldown": 1.0,
+	"cooldown": 2.0,
 	"attacks": [
 		{
 			"sprite": "fire_bolt",
-			"speed": 1.5,
+			"speed": 2.0,
 			"lifetime": 2.0,
-			"projectileCount": 18,
-			"angleGap": 20,
-			
-			"acceleration": {
-				"rate": -0.5
-			}
+			"projectileCount": 6,
+			"angleGap": 5
 		}
 	]
 }

@@ -19,6 +19,16 @@ public class WeaponItem : Item
 
     public void Start()
     {
+        for (int i = 0; i < attacks.Length; ++i)
+        {
+            if (attacks[i].name != null)
+            {
+                foreach (Attack attack1 in AttackPresetBuilder.attacks)
+                {
+                    if (attacks[i].name == attack1.name) attacks[i] = attack1;
+                }
+            }
+        }
         sigils = new SigilItem[maxSigils];
     }
 
@@ -32,7 +42,7 @@ public class WeaponItem : Item
             }
             attackTime = 0f;
         }
-        for (int i = 0; i < sigils.Length; i++)
+        for (int i = 0; i < sigils.Length; ++i)
         {
             if (sigils[i] != null) sigils[i].TryActivate(character, character.pool);
         }
@@ -40,7 +50,7 @@ public class WeaponItem : Item
 
     public void IncrementAttackTime(float f)
     {
-        for (int i = 0; i < sigils.Length; i++)
+        for (int i = 0; i < sigils.Length; ++i)
         {
             if (sigils[i] != null) sigils[i].IncrementAttackTime(f);
         }
