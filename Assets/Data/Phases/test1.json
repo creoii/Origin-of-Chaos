@@ -1,0 +1,9 @@
+{
+	"name": "test1",
+	"duration": 10.0,
+	"attacks": [
+		{
+			"name": "test_attack_0"
+		}
+	]
+}

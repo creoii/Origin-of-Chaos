@@ -52,6 +52,7 @@ public class Character : MonoBehaviour
             if (Input.GetKey(Game.settings.downKey)) movement += Vector3.down;
             if (Input.GetKey(Game.settings.upKey)) movement += Vector3.up;
             if (Input.GetKey(Game.settings.rightKey)) movement += Vector3.right;
+
             movement *= stats.speed * Time.deltaTime;
             if (movement != Vector3.zero)
             {
@@ -76,14 +77,12 @@ public class Character : MonoBehaviour
     {
         if (!inventory.slots[0].empty)
         {
-            WeaponItem weapon = inventory.slots[0].item as WeaponItem;
-            weapon.IncrementAttackTime(Time.deltaTime);
+            (inventory.slots[0].item as WeaponItem).IncrementAttackTime(Time.deltaTime);
         }
 
         if (!inventory.slots[1].empty)
         {
-            AbilityItem ability = inventory.slots[1].item as AbilityItem;
-            ability.IncrementAttackTime(Time.deltaTime);
+            (inventory.slots[1].item as AbilityItem).IncrementAttackTime(Time.deltaTime);
         }
     }
 
@@ -91,10 +90,9 @@ public class Character : MonoBehaviour
     {
         if (stats.attackSpeed > 0)
         {
-            if (inventory.slots[0] != null || (!inventory.slots[0].empty))
+            if (!inventory.slots[0].empty)
             {
-                WeaponItem weapon = inventory.slots[0].item as WeaponItem;
-                weapon.Use(this);
+                (inventory.slots[0].item as WeaponItem).Use(this);
             }
         }
     }
@@ -124,6 +122,11 @@ public class Character : MonoBehaviour
         {
             if (level.Level < 40) ++level.Level;
         }
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 
     public Character CreateCopy(Vector3 position)

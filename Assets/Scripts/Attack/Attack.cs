@@ -12,7 +12,6 @@ public class Attack
     public int angleOffset = 0;
     public int angleGap = 0;
     public bool onMouse = false;
-
     public MultiplierData acceleration = null;
 
     public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration)
@@ -60,7 +59,28 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection(position, angle += angleGap).normalized);
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((MouseUtil.GetMouseWorldPos() - position).normalized, angle += angleGap));
+                    obj.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void Shoot(Enemy enemy, Character character, ObjectPool pool)
+    {
+        if (projectileCount > 0)
+        {
+            Vector3 position = onMouse ? MouseUtil.GetMouseWorldPos() : enemy.GetPosition();
+            float angle = MathUtil.ToAngle(character.transform.position - position) + angleOffset;
+            if (angle < 0) angle += 360f;
+            if (projectileCount > 1) angle -= angleGap * (((projectileCount - 1f) / 2f) + 1);
+
+            for (int i = 0; i < projectileCount; ++i)
+            {
+                GameObject obj = pool.GetObject();
+                if (obj != null)
+                {
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((character.transform.position - position).normalized, angle += angleGap));
                     obj.SetActive(true);
                 }
             }

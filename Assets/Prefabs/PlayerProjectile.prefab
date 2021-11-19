@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 457785990427633635}
   - component: {fileID: 4897166232078011898}
   - component: {fileID: -4587308934847649253}
-  m_Layer: 0
-  m_Name: Projectile
+  m_Layer: 9
+  m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,12 +51,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack:
+    name: 
+    sprite: 
     lifetime: 0
     speed: 0
     projectileCount: 0
+    angleOffset: 0
     angleGap: 0
-    spriteName: 
+    onMouse: 0
+    acceleration:
+      rate: 0
+      multiplier: 0
+      min: 0
+      max: 0
+      offset: 0
   direction: {x: 0, y: 0, z: 0}
+  speed: 0
+  rate: 0
 --- !u!212 &-4587308934847649253
 SpriteRenderer:
   m_ObjectHideFlags: 0

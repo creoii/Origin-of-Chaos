@@ -3,11 +3,11 @@ using System.IO;
 using UnityEngine;
 using System;
 
-public class AttackPresetBuilder
+public class TransitionBuilder
 {
-    private readonly string DATA_PATH = "Assets/Data/Presets/Attacks";
+    private readonly string DATA_PATH = "Assets/Data/Transitions";
 
-    public static List<Attack> attacks = new List<Attack>();
+    public static List<Transition> transitions = new List<Transition>();
 
     public void readAndStoreData()
     {
@@ -16,12 +16,12 @@ public class AttackPresetBuilder
             Directory.CreateDirectory(DATA_PATH);
             return;
         }
-
+        
         IEnumerable<string> files = Directory.EnumerateFiles(DATA_PATH, "*.json", SearchOption.AllDirectories);
         foreach (string file in files)
         {
-            Attack attack = JsonUtility.FromJson<Attack>(new StreamReader(file).ReadToEnd());
-            attacks.Add(attack);
+            Transition transition = JsonUtility.FromJson<Transition>(new StreamReader(file).ReadToEnd());
+            transitions.Add(transition);
         }
     }
 }

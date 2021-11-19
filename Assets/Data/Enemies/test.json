@@ -1,0 +1,15 @@
+{
+	"name": "test",
+	"sprite": "skeleton",
+	"stats": {
+		"attackSpeed": 10.0
+	},
+	"phases": [
+		{
+			"name": "test1",
+			"transition": {
+				"nextPhase": "test1"
+			}
+		}
+	]
+}

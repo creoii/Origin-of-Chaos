@@ -1,14 +1,64 @@
 ﻿using System;
+using System.Collections;
+using UnityEngine;
 
 [Serializable]
 public class Enemy
 {
     public string name;
-    public bool isBoss;
+    public string sprite;
+    public StatData stats;
+    public bool isBoss = false;
+    public Phase[] phases;
 
-    public Enemy(string name, bool isBoss)
+    private Vector3 position;
+
+    public Enemy(string name, string sprite, StatData stats)
     {
         this.name = name;
+        this.sprite = sprite;
+        this.stats = stats;
+    }
+
+    public Enemy(string name, string sprite, StatData stats, bool isBoss) : this(name, sprite, stats)
+    {
         this.isBoss = isBoss;
+    }
+
+    public Enemy(string name, string sprite, StatData stats, bool isBoss, Phase[] phases) : this(name, sprite, stats, isBoss)
+    {
+        this.phases = phases;
+    }
+
+    public void Start()
+    {
+        if (phases != null)
+        {
+            for (int i = 0; i < phases.Length; ++i)
+            {
+                if (phases[i].name != null)
+                {
+                    foreach (Phase phase in PhaseBuilder.phases)
+                    {
+                        if (phases[i].name == phase.name) phases[i] = phase;
+                    }
+                }
+            }
+
+            foreach (Phase phase in phases)
+            {
+                phase.Start();
+            }
+        }
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        this.position = position;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return position;
     }
 }

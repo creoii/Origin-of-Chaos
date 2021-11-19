@@ -22,8 +22,11 @@
 
     public void SetItem(Item item)
     {
-        this.item = item;
-        empty = false;
+        if (CanSetItem(item))
+        {
+            this.item = item;
+            empty = false;
+        }
     }
 
     public void RemoveItem()

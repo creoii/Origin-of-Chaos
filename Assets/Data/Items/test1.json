@@ -2,7 +2,7 @@
 	"name": "Test 1",
 	"description": "A test item",
 	"sprite": "inquisition",
-	"itemType": "Spell",
+	"itemType": "Helm",
 	"rarity": "Mythical",
 	"maxSigils": 3,
 	"cooldown": 0.5,

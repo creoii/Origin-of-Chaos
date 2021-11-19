@@ -23,9 +23,9 @@ public class WeaponItem : Item
         {
             if (attacks[i].name != null)
             {
-                foreach (Attack attack1 in AttackPresetBuilder.attacks)
+                foreach (Attack attack in AttackBuilder.attacks)
                 {
-                    if (attacks[i].name == attack1.name) attacks[i] = Attack.Override(attack1, attacks[i]);
+                    if (attacks[i].name == attack.name) attacks[i] = Attack.Override(attack, attacks[i]);
                 }
             }
         }
@@ -42,6 +42,7 @@ public class WeaponItem : Item
             }
             attackTime = 0f;
         }
+
         for (int i = 0; i < sigils.Length; ++i)
         {
             if (sigils[i] != null) sigils[i].TryActivate(character, character.pool);
