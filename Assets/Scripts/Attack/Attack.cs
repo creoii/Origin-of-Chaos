@@ -26,11 +26,6 @@ public class Attack
         this.acceleration = acceleration;
     }
 
-    public Attack(string sprite, float lifetime, float speed) : this(sprite, lifetime, speed, 1, 0, 0, false, null)
-    {
-
-    }
-
     public static Attack Override(Attack one, Attack two)
     {
         return new Attack(

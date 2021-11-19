@@ -11,11 +11,6 @@ public class Player : MonoBehaviour
     {
         maxCharacters = 3;
         characters = new Character[maxCharacters];
-
-        for (int i = 0; i < maxCharacters; i++)
-        {
-            characters[i] = characterPrefab.CreateCopy(transform.position);
-        }
     }
 
     void Update()

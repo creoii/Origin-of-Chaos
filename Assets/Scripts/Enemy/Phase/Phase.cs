@@ -12,19 +12,6 @@ public class Phase
 
     private float attackTime = 0f;
 
-    public Phase(string name, float duration, Transition transition)
-    {
-        this.name = name;
-        this.duration = duration;
-        this.transition = transition;
-    }
-
-    public Phase(string name, float duration, Attack[] attacks, Movement[] movements, Transition transition) : this(name, duration, transition)
-    {
-        this.attacks = attacks;
-        this.movements = movements;
-    }
-
     public void Start()
     {
         if (attacks != null)

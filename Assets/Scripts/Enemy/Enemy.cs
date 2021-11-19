@@ -25,11 +25,6 @@ public class Enemy
         this.isBoss = isBoss;
     }
 
-    public Enemy(string name, string sprite, StatData stats, bool isBoss, Phase[] phases) : this(name, sprite, stats, isBoss)
-    {
-        this.phases = phases;
-    }
-
     public void Start()
     {
         if (phases != null)

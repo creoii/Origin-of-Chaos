@@ -123,17 +123,4 @@ public class Character : MonoBehaviour
             if (level.Level < 40) ++level.Level;
         }
     }
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-
-    public Character CreateCopy(Vector3 position)
-    {
-        Character ret = Instantiate(this, position, Quaternion.identity);
-        ret.playerClass = playerClass;
-        ret.stats = stats;
-        return ret;
-    }
 }
