@@ -6,18 +6,24 @@ public class PlayerInterface : MonoBehaviour
     public Character character;
     public Canvas canvas;
     public Image healthBar;
-    public Image[] classInventory = new Image[4];
+    public Image[] slots = new Image[4];
 
     void Start()
     {
         character = GetComponentInParent<Character>();
+        for (int i = 0; i < slots.Length; i++)
+        {
+            character.playerClass.classInventory.slots[i].transform = slots[i].transform as RectTransform;
+        }
         canvas = GetComponent<Canvas>();
         healthBar.color = Color.green;
     }
 
     private void Update()
     {
+        //should only be called when changing health values
         UpdateHealthBar();
+        //should only be called when changing inventory slots
         UpdateInventory();
     }
 
@@ -37,7 +43,7 @@ public class PlayerInterface : MonoBehaviour
             Item item = character.playerClass.classInventory.slots[i].item;
             if (item.sprite != null)
             {
-                SpriteUtil.SetSprite(classInventory[i], "Sprites/Items/" + item.sprite);
+                SpriteUtil.SetSprite(slots[i], "Sprites/Items/" + item.sprite);
             }
         }
     }

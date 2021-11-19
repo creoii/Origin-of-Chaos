@@ -24,6 +24,7 @@ public class Character : MonoBehaviour
         playerClass.classInventory.slots[0].SetItem(ItemBuilder.weapons[0]);
         playerClass.classInventory.slots[1].SetItem(ItemBuilder.abilities[0]);
 
+        pool = GetComponentInChildren<ObjectPool>();
         StartInventory(playerClass.classInventory);
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);

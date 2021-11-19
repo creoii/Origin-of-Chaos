@@ -1,8 +1,13 @@
-﻿public class Slot
+﻿using UnityEngine.UI;
+using UnityEngine;
+
+public class Slot
 {
     public ItemType slotType = ItemType.All;
     public bool empty = true;
     public Item item;
+    public RectTransform transform;
+    public Image image;
 
     public Slot(ItemType slotType)
     {

@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
     {
         enemy = EnemyBuilder.enemies[0];
         enemy.Start();
+        pool = GetComponentInChildren<ObjectPool>();
         currentPhase = enemy.phases[0];
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Enemies/" + enemy.sprite);

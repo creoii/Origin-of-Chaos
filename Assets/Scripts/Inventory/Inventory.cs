@@ -1,4 +1,7 @@
-﻿public class Inventory
+﻿using UnityEngine.UI;
+using UnityEngine;
+
+public class Inventory
 {
     public Slot[] slots;
 
