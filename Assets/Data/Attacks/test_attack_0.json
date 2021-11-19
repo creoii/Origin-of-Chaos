@@ -4,6 +4,8 @@
 	"speed": 1.5,
 	"lifetime": 3.0,
 	"projectileCount": 2,
+	"minDamage": 2.0,
+	"maxDamage": 6.0,
 	"angleGap": 15,
 	"acceleration": {
 		"rate": -0.003,

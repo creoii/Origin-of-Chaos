@@ -9,17 +9,21 @@ public class Attack
     public float lifetime;
     public float speed;
     public int projectileCount = 1;
+    public float minDamage;
+    public float maxDamage;
     public int angleOffset = 0;
     public int angleGap = 0;
     public bool onMouse = false;
     public MultiplierData acceleration = null;
 
-    public Attack(string sprite, float lifetime, float speed, int projectileCount, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration)
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration)
     {
         this.sprite = sprite;
         this.lifetime = lifetime;
         this.speed = speed;
         this.projectileCount = projectileCount;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
         this.angleOffset = angleOffset;
         this.angleGap = angleGap;
         this.onMouse = onMouse;
@@ -33,6 +37,8 @@ public class Attack
             two.lifetime == 0 ? one.lifetime : two.lifetime,
             two.speed == 0 ? one.speed : two.speed,
             two.projectileCount == 0 ? one.projectileCount : two.projectileCount,
+            two.minDamage == 0 ? one.minDamage : two.minDamage,
+            two.maxDamage == 0 ? one.maxDamage : two.maxDamage,
             two.angleOffset == 0 ? one.angleOffset : two.angleOffset,
             two.angleGap == 0 ? one.angleGap : two.angleGap,
             two.onMouse,
@@ -54,7 +60,7 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((MouseUtil.GetMouseWorldPos() - position).normalized, angle += angleGap));
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((MouseUtil.GetMouseWorldPos() - position).normalized, angle += angleGap), minDamage, maxDamage);
                     obj.SetActive(true);
                 }
             }
@@ -75,7 +81,7 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((character.transform.position - position).normalized, angle += angleGap));
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((character.transform.position - position).normalized, angle += angleGap), minDamage, maxDamage);
                     obj.SetActive(true);
                 }
             }

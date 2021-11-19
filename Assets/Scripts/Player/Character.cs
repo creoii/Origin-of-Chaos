@@ -124,4 +124,10 @@ public class Character : MonoBehaviour
             if (level.Level < 40) ++level.Level;
         }
     }
+
+    public void Damage(float amount)
+    {
+        if (stats.health - amount < 0) stats.health = 0;
+        else stats.health -= amount;
+    }
 }

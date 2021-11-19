@@ -56,4 +56,10 @@ public class Enemy
     {
         return position;
     }
+
+    public void Damage(float amount)
+    {
+        if (stats.health - amount < 0) stats.health = 0;
+        else stats.health -= amount;
+    }
 }

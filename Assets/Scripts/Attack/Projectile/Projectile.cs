@@ -6,14 +6,16 @@ public class Projectile : MonoBehaviour
     public Vector3 direction;
     public float speed;
     public float rate;
+    private float damage;
     private float life;
 
-    public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction)
+    public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction, float minDamage, float maxDamage)
     {
         transform.position = position;
         this.attack = attack;
         speed = attack.speed;
         rate = attack.acceleration.rate;
+        damage = Mathf.RoundToInt(Random.Range(minDamage, maxDamage));
         this.direction = direction;
         return this;
     }
@@ -46,5 +48,19 @@ public class Projectile : MonoBehaviour
     {
         gameObject.SetActive(false);
         life = 0;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Character"))
+        {
+            Character character = collision.gameObject.GetComponent<Character>();
+            character.Damage(damage);
+        }
+        else if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            Entity entity = collision.gameObject.GetComponent<Entity>();
+            entity.enemy.Damage(damage);
+        }
     }
 }
