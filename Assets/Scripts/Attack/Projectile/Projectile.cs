@@ -52,15 +52,17 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Character"))
+        if (collision.gameObject.tag.Equals("Character") && gameObject.tag.Equals("EnemyProjectile"))
         {
             Character character = collision.gameObject.GetComponent<Character>();
             character.Damage(damage);
+            gameObject.SetActive(false);
         }
-        else if (collision.gameObject.tag.Equals("Enemy"))
+        else if (collision.gameObject.tag.Equals("Enemy") && gameObject.tag.Equals("PlayerProjectile"))
         {
             Entity entity = collision.gameObject.GetComponent<Entity>();
-            entity.enemy.Damage(damage);
+            entity.Damage(damage);
+            gameObject.SetActive(false);
         }
     }
 }

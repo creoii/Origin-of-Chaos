@@ -33,4 +33,14 @@ public class Entity : MonoBehaviour
         }
         return null;
     }
+
+    public void Damage(float amount)
+    {
+        if (enemy.stats.health - amount < 0)
+        {
+            enemy.stats.health = 0;
+            gameObject.SetActive(false);
+        }
+        else enemy.stats.health -= amount;
+    }
 }

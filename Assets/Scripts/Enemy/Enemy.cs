@@ -27,6 +27,7 @@ public class Enemy
 
     public void Start()
     {
+        stats.health = stats.maxHealth;
         if (phases != null)
         {
             for (int i = 0; i < phases.Length; ++i)
@@ -55,11 +56,5 @@ public class Enemy
     public Vector3 GetPosition()
     {
         return position;
-    }
-
-    public void Damage(float amount)
-    {
-        if (stats.health - amount < 0) stats.health = 0;
-        else stats.health -= amount;
     }
 }

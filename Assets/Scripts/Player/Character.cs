@@ -127,7 +127,11 @@ public class Character : MonoBehaviour
 
     public void Damage(float amount)
     {
-        if (stats.health - amount < 0) stats.health = 0;
+        if (stats.health - amount < 0)
+        {
+            stats.health = 0;
+            gameObject.SetActive(false);
+        }
         else stats.health -= amount;
     }
 }
