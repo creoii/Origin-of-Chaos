@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Character : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Character : MonoBehaviour
         StartInventory(playerClass.classInventory);
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
+
+        StartCoroutine(UpdateRegeneration());
     }
 
     void Update()
@@ -123,6 +126,23 @@ public class Character : MonoBehaviour
         {
             if (level.Level < 40) ++level.Level;
         }
+    }
+
+    IEnumerator UpdateRegeneration()
+    {
+        for (;;) {
+            Heal(.5f);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        if (stats.health + amount > stats.maxHealth)
+        {
+            stats.health = stats.maxHealth;
+        }
+        else stats.health += amount;
     }
 
     public void Damage(float amount)

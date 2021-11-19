@@ -3,7 +3,9 @@
 	"duration": 10.0,
 	"attacks": [
 		{
-			"name": "test_attack_0"
+			"name": "test_attack_0",
+			"minDamage": 5,
+			"maxDamage": 10
 		}
 	]
 }

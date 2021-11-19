@@ -2,7 +2,7 @@
 	"name": "test",
 	"sprite": "skeleton",
 	"stats": {
-		"maxHealth": 100,
+		"maxHealth": 500,
 		"attackSpeed": 25.0
 	},
 	"phases": [
