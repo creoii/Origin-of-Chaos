@@ -7,13 +7,15 @@ public class StatData
     public float health;
     public float speed;
     public float attackSpeed;
+    public float healthRegeneration;
 
-    public StatData(float maxhealth, float speed, float attackSpeed)
+    public StatData(float maxhealth, float speed, float attackSpeed, float healthRegeneration)
     {
         maxHealth = maxhealth;
         health = maxhealth;
         this.speed = speed;
         this.attackSpeed = attackSpeed;
+        this.healthRegeneration = healthRegeneration;
     }
 
     public StatData Add(StatData add)
@@ -22,6 +24,7 @@ public class StatData
         health += add.health;
         speed += add.speed;
         attackSpeed += add.attackSpeed;
+        healthRegeneration += add.healthRegeneration;
         return this;
     }
 
@@ -31,6 +34,7 @@ public class StatData
         health *= add.health;
         speed *= add.speed;
         attackSpeed *= add.attackSpeed;
+        healthRegeneration *= add.healthRegeneration;
         return this;
     }
 
@@ -40,6 +44,7 @@ public class StatData
         health -= add.health;
         speed -= add.speed;
         attackSpeed -= add.attackSpeed;
+        healthRegeneration -= add.healthRegeneration;
         return this;
     }
 }

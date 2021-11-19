@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
 
-        StartCoroutine(UpdateRegeneration());
+        StartCoroutine(UpdateRegeneration(stats.healthRegeneration));
     }
 
     void Update()
@@ -128,10 +128,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateRegeneration()
+    IEnumerator UpdateRegeneration(float amount)
     {
         for (;;) {
-            Heal(.5f);
+            Heal(amount);
             yield return new WaitForSeconds(1f);
         }
     }
