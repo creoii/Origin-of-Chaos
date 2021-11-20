@@ -21,7 +21,7 @@ public class Entity : MonoBehaviour
     void Update()
     {
         enemy.SetPosition(transform.position);
-        currentPhase.Run(enemy, targetCharacter, pool);
+        if (targetCharacter.isActiveAndEnabled) currentPhase.Run(enemy, targetCharacter, pool);
         currentPhase.IncrementAttackTime(Time.deltaTime);
     }
 

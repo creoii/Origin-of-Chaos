@@ -1,0 +1,17 @@
+{
+	"name": "test2",
+	"duration": 10.0,
+	"attacks": [
+		{
+			"name": "test_attack_0",
+			"minDamage": 2,
+			"maxDamage": 4
+		},
+		{
+			"name": "test_attack_0",
+			"minDamage": 2,
+			"maxDamage": 12,
+			"angleOffset": 180
+		}
+	]
+}

@@ -9,7 +9,7 @@ public class Phase
     public Attack[] attacks;
     public Movement[] movements;
     public Transition transition;
-
+    
     private float attackTime = 0f;
 
     public void Start()

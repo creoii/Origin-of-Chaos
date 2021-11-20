@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
 
-        StartCoroutine(UpdateRegeneration(stats.healthRegeneration));
+        StartCoroutine(UpdateRegeneration(stats.healthRegeneration, stats.manaRegeneration));
     }
 
     void Update()
@@ -128,10 +128,11 @@ public class Character : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateRegeneration(float amount)
+    IEnumerator UpdateRegeneration(float amount, float manaAmount)
     {
         for (;;) {
             Heal(amount);
+            HealMana(manaAmount);
             yield return new WaitForSeconds(1f);
         }
     }
@@ -145,6 +146,15 @@ public class Character : MonoBehaviour
         else stats.health += amount;
     }
 
+    public void HealMana(float amount)
+    {
+        if (stats.mana + amount > stats.maxMana)
+        {
+            stats.mana = stats.maxMana;
+        }
+        else stats.mana += amount;
+    }
+
     public void Damage(float amount)
     {
         if (stats.health - amount < 0)
@@ -153,5 +163,14 @@ public class Character : MonoBehaviour
             gameObject.SetActive(false);
         }
         else stats.health -= amount;
+    }
+
+    public void DamageMana(float amount)
+    {
+        if (stats.mana - amount < 0)
+        {
+            stats.mana = 0;
+        }
+        else stats.mana -= amount;
     }
 }

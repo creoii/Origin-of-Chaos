@@ -17,7 +17,7 @@ public class StatusEffect
 
     public StatusEffect WithStrengthMultiplier(float strengthMultiplier)
     {
-        statChange.Multiply(new StatData(strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier));
+        statChange.Multiply(new StatData(strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier));
         return this;
     }
 
