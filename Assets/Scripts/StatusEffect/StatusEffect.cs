@@ -7,12 +7,14 @@ public class StatusEffect
 {
     public string name;
     public float duration;
+    public bool instant = false;
     public StatData statChange;
 
-    public StatusEffect(string name, float duration, StatData statChange)
+    public StatusEffect(string name, float duration, bool instant, StatData statChange)
     {
         this.name = name;
         this.duration = duration;
+        this.instant = instant;
         this.statChange = statChange;
     }
 
@@ -26,6 +28,7 @@ public class StatusEffect
         return new StatusEffect(
             two.name == null ? one.name : two.name,
             two.duration == 0 ? one.duration : two.duration,
+            two.instant,
             two.statChange == null ? one.statChange : two.statChange
         );
     }
@@ -35,7 +38,7 @@ public class StatusEffect
         character.stats.Add(statChange);
         yield return new WaitForSeconds(duration);
         character.activeEffects.Remove(this);
-        character.stats.Subtract(statChange);
+        if (!instant) character.stats.Subtract(statChange);
     }
 
     public IEnumerator Apply(Entity entity)
@@ -43,6 +46,6 @@ public class StatusEffect
         entity.enemy.stats.Add(statChange);
         yield return new WaitForSeconds(duration);
         entity.activeEffects.Remove(this);
-        entity.enemy.stats.Subtract(statChange);
+        if (!instant) entity.enemy.stats.Subtract(statChange);
     }
 }

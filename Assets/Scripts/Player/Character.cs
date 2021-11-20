@@ -70,6 +70,8 @@ public class Character : MonoBehaviour
         WeaponItem weapon = inventory.slots[0].item as WeaponItem;
         weapon.Start();
         weapon.sigils[0] = ItemBuilder.sigils[0];
+
+        (inventory.slots[1].item as AbilityItem).Start();
     }
 
     void UpdateInventory(ClassInventory inventory)
