@@ -41,13 +41,6 @@ public class Character : MonoBehaviour
         UpdateInventory(playerClass.classInventory);
         if (Input.GetKey(KeyCode.Mouse0)) UpdateAttacks(playerClass.classInventory);
         if (Input.GetKey(Game.settings.useAbilityKey)) UpdateAbilities();
-
-        //for testing status effects
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            activeEffects.Add(StatusEffectBuilder.statusEffects[0].WithDuration(10f));
-            UpdateActiveEffects();
-        }
     }
 
     void UpdateMovement()
@@ -112,22 +105,25 @@ public class Character : MonoBehaviour
         }
     }
 
-    void UpdateActiveEffects()
+    public void AddStatusEffect(StatusEffect effect)
     {
-        foreach (StatusEffect effect in activeEffects)
+        bool apply = true;
+        foreach (StatusEffect active in activeEffects)
         {
+            if (active.name.Equals(effect.name)) apply = false;
+        }
+
+        if (apply && isActiveAndEnabled)
+        {
+            activeEffects.Add(effect);
             StartCoroutine(effect.Apply(this));
         }
     }
 
-    void UpdateLeveling(float xp)
+    public void UpdateLeveling(float xp)
     {
-        level.Xp += xp;
-
-        if (level.Xp > LevelData.XpRequired(level.Level))
-        {
-            if (level.Level < 40) ++level.Level;
-        }
+        level.xp += xp;
+        if (level.xp > LevelData.XpRequired(level.level) && level.level < 40) ++level.level;
     }
 
     IEnumerator UpdateRegeneration(float amount, float manaAmount)
@@ -165,8 +161,7 @@ public class Character : MonoBehaviour
     {
         if (stats.health - amount < 0)
         {
-            stats.health = 0;
-            gameObject.SetActive(false);
+            Kill();
         }
         else stats.health -= amount;
         playerInterface.UpdateHealthBar();
@@ -180,5 +175,11 @@ public class Character : MonoBehaviour
         }
         else stats.mana -= amount;
         playerInterface.UpdateManaBar();
+    }
+
+    private void Kill()
+    {
+        stats.health = 0;
+        gameObject.SetActive(false);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Entity : MonoBehaviour
 {
@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour
     public Character targetCharacter;
     public ObjectPool pool;
     private Phase currentPhase;
+    public List<StatusEffect> activeEffects = new List<StatusEffect>();
 
     void Start()
     {
@@ -25,6 +26,21 @@ public class Entity : MonoBehaviour
         currentPhase.IncrementAttackTime(Time.deltaTime);
     }
 
+    public void AddStatusEffect(StatusEffect effect)
+    {
+        bool apply = true;
+        foreach (StatusEffect active in activeEffects)
+        {
+            if (active.name.Equals(effect.name)) apply = false;
+        }
+
+        if (apply && isActiveAndEnabled)
+        {
+            activeEffects.Add(effect);
+            StartCoroutine(effect.Apply(this));
+        }
+    }
+
     private Phase GetPhase(string name)
     {
         foreach (Phase phase in enemy.phases)
@@ -38,9 +54,15 @@ public class Entity : MonoBehaviour
     {
         if (enemy.stats.health - amount < 0)
         {
-            enemy.stats.health = 0;
-            gameObject.SetActive(false);
+            targetCharacter.UpdateLeveling(enemy.xp);
+            Kill();
         }
         else enemy.stats.health -= amount;
+    }
+
+    private void Kill()
+    {
+        enemy.stats.health = 0;
+        gameObject.SetActive(false);
     }
 }

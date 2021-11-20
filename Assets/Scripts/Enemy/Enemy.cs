@@ -7,6 +7,7 @@ public class Enemy
 {
     public string name;
     public string sprite;
+    public float xp;
     public StatData stats;
     public bool isBoss = false;
     public Phase[] phases;

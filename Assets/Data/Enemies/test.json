@@ -1,6 +1,7 @@
 {
 	"name": "test",
 	"sprite": "skeleton",
+	"xp": 250.0,
 	"stats": {
 		"maxHealth": 500,
 		"attackSpeed": 25.0

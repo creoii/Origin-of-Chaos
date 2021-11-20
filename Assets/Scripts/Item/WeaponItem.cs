@@ -6,7 +6,6 @@ public class WeaponItem : Item
 {
     public float rateOfFire;
     public Attack[] attacks;
-
     public SigilItem[] sigils;
     private float attackTime = 0f;
 
@@ -28,6 +27,7 @@ public class WeaponItem : Item
                     if (attacks[i].name == attack.name) attacks[i] = Attack.Override(attack, attacks[i]);
                 }
             }
+            attacks[i].Start();
         }
         sigils = new SigilItem[maxSigils];
     }

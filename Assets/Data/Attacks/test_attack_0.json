@@ -11,5 +11,14 @@
 		"rate": -0.003,
 		"multiplier": 1.5,
 		"offset": 1.0
-	}
+	},
+	"statusEffects": [
+		{
+			"name": "dazed",
+			"duration": 5.0,
+			"statChange": {
+				"attackSpeed": -8.0
+			}
+		}
+	]
 }

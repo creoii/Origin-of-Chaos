@@ -15,8 +15,9 @@ public class Attack
     public int angleGap = 0;
     public bool onMouse = false;
     public MultiplierData acceleration = null;
+    public StatusEffect[] statusEffects;
 
-    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration)
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration, StatusEffect[] statusEffects)
     {
         this.sprite = sprite;
         this.lifetime = lifetime;
@@ -28,6 +29,27 @@ public class Attack
         this.angleGap = angleGap;
         this.onMouse = onMouse;
         this.acceleration = acceleration;
+        this.statusEffects = statusEffects;
+    }
+
+    public void Start()
+    {
+        if (statusEffects != null)
+        {
+            for (int i = 0; i < statusEffects.Length; ++i)
+            {
+                if (statusEffects[i].name != null)
+                {
+                    foreach (StatusEffect effect in StatusEffectBuilder.statusEffects)
+                    {
+                        if (statusEffects[i].name.Equals(effect.name))
+                        {
+                            statusEffects[i] = StatusEffect.Override(statusEffects[i], effect);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static Attack Override(Attack one, Attack two)
@@ -42,7 +64,8 @@ public class Attack
             two.angleOffset == 0 ? one.angleOffset : two.angleOffset,
             two.angleGap == 0 ? one.angleGap : two.angleGap,
             two.onMouse,
-            MultiplierData.Override(one.acceleration, two.acceleration)
+            MultiplierData.Override(one.acceleration, two.acceleration),
+            two.statusEffects == null ? one.statusEffects : two.statusEffects
         );
     }
 

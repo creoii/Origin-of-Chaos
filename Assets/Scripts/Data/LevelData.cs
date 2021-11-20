@@ -1,7 +1,7 @@
 public class LevelData
 {
-    public float Level { get; set; } = 1;
-    public float Xp { get; set; } = 0;
+    public float level = 1;
+    public float xp = 0;
 
     public static float XpRequired(float level)
     {
