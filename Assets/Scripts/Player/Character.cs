@@ -5,6 +5,7 @@ using System.Collections;
 public class Character : MonoBehaviour
 {
     public ObjectPool pool;
+    public PlayerInterface playerInterface;
     public PlayerClass playerClass = Classes.Warrior;
     public StatData stats;
     public LevelData level = new LevelData();
@@ -26,6 +27,7 @@ public class Character : MonoBehaviour
         playerClass.classInventory.slots[1].SetItem(ItemBuilder.abilities[0]);
 
         pool = GetComponentInChildren<ObjectPool>();
+        playerInterface = GetComponentInChildren<PlayerInterface>();
         StartInventory(playerClass.classInventory);
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
@@ -43,7 +45,7 @@ public class Character : MonoBehaviour
         //for testing status effects
         if (Input.GetKeyDown(KeyCode.R))
         {
-            activeEffects.Add(StatusEffectBuilder.statusEffects[0].WithDuration(10f).WithStrengthMultiplier(1.5f));
+            activeEffects.Add(StatusEffectBuilder.statusEffects[0].WithDuration(10f));
             UpdateActiveEffects();
         }
     }
@@ -132,7 +134,9 @@ public class Character : MonoBehaviour
     {
         for (;;) {
             Heal(amount);
+            playerInterface.UpdateHealthBar();
             HealMana(manaAmount);
+            playerInterface.UpdateManaBar();
             yield return new WaitForSeconds(1f);
         }
     }
@@ -144,6 +148,7 @@ public class Character : MonoBehaviour
             stats.health = stats.maxHealth;
         }
         else stats.health += amount;
+        playerInterface.UpdateHealthBar();
     }
 
     public void HealMana(float amount)
@@ -153,6 +158,7 @@ public class Character : MonoBehaviour
             stats.mana = stats.maxMana;
         }
         else stats.mana += amount;
+        playerInterface.UpdateManaBar();
     }
 
     public void Damage(float amount)
@@ -163,6 +169,7 @@ public class Character : MonoBehaviour
             gameObject.SetActive(false);
         }
         else stats.health -= amount;
+        playerInterface.UpdateHealthBar();
     }
 
     public void DamageMana(float amount)
@@ -172,5 +179,6 @@ public class Character : MonoBehaviour
             stats.mana = 0;
         }
         else stats.mana -= amount;
+        playerInterface.UpdateManaBar();
     }
 }

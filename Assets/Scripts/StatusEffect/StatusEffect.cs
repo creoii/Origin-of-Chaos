@@ -15,16 +15,11 @@ public class StatusEffect
         return this;
     }
 
-    public StatusEffect WithStrengthMultiplier(float strengthMultiplier)
-    {
-        statChange.Multiply(new StatData(strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier, strengthMultiplier));
-        return this;
-    }
-
     public IEnumerator Apply(Character character)
     {
         character.stats.Add(statChange);
         yield return new WaitForSeconds(duration);
+        character.activeEffects.Remove(this);
         character.stats.Subtract(statChange);
     }
 }

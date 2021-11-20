@@ -6,6 +6,7 @@ public class PlayerInterface : MonoBehaviour
     public Character character;
     public Canvas canvas;
     public Image healthBar;
+    public Image manaBar;
     public Image[] slots = new Image[4];
 
     void Start()
@@ -17,23 +18,27 @@ public class PlayerInterface : MonoBehaviour
         }
         canvas = GetComponent<Canvas>();
         healthBar.color = Color.green;
+        manaBar.color = Color.blue;
     }
 
     private void Update()
     {
-        //should only be called when changing health values
-        UpdateHealthBar();
         //should only be called when changing inventory slots
         UpdateInventory();
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         healthBar.transform.localScale = new Vector3(character.stats.health / character.stats.maxHealth, 1f, 1f);
 
         if (character.stats.health < character.stats.maxHealth * .2f) healthBar.color = Color.red;
         else if (character.stats.health < character.stats.maxHealth * .5f) healthBar.color = Color.yellow;
         else healthBar.color = Color.green;
+    }
+
+    public void UpdateManaBar()
+    {
+        manaBar.transform.localScale = new Vector3(character.stats.mana / character.stats.maxMana, 1f, 1f);
     }
 
     private void UpdateInventory()
