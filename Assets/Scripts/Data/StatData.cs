@@ -28,6 +28,20 @@ public class StatData
         this.attack = attack;
     }
 
+    public static StatData Override(StatData one, StatData two)
+    {
+        return new StatData(
+            two.maxHealth == 0 ? one.maxHealth : two.maxHealth,
+            two.maxMana == 0 ? one.maxMana : two.maxMana,
+            two.speed == 0 ? one.speed : two.speed,
+            two.attackSpeed == 0 ? one.attackSpeed : two.attackSpeed,
+            two.healthRegeneration == 0 ? one.healthRegeneration : two.healthRegeneration,
+            two.manaRegeneration == 0 ? one.manaRegeneration : two.manaRegeneration,
+            two.armor == 0 ? one.armor : two.armor,
+            two.attack == 0 ? one.attack : two.attack
+        );
+    }
+
     public StatData Add(StatData add)
     {
         maxHealth += add.maxHealth;

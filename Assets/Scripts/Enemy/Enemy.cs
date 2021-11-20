@@ -12,6 +12,7 @@ public class Enemy
     public bool isBoss = false;
     public Phase[] phases;
 
+    private Vector3 origin;
     private Vector3 position;
 
     public Enemy(string name, string sprite, StatData stats)
@@ -26,9 +27,10 @@ public class Enemy
         this.isBoss = isBoss;
     }
 
-    public void Start()
+    public void Start(Character character, Vector3 origin)
     {
         stats.health = stats.maxHealth;
+        this.origin = origin;
         if (phases != null)
         {
             for (int i = 0; i < phases.Length; ++i)
@@ -44,7 +46,7 @@ public class Enemy
 
             foreach (Phase phase in phases)
             {
-                phase.Start();
+                phase.Start(this, character);
             }
         }
     }
@@ -57,5 +59,10 @@ public class Enemy
     public Vector3 GetPosition()
     {
         return position;
+    }
+
+    public Vector3 GetOrigin()
+    {
+        return origin;
     }
 }

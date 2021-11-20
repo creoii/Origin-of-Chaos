@@ -8,13 +8,15 @@ public class StatusEffect
     public string name;
     public float duration;
     public bool instant = false;
+    public bool positive;
     public StatData statChange;
 
-    public StatusEffect(string name, float duration, bool instant, StatData statChange)
+    public StatusEffect(string name, float duration, bool instant, bool positive, StatData statChange)
     {
         this.name = name;
         this.duration = duration;
         this.instant = instant;
+        this.positive = positive;
         this.statChange = statChange;
     }
 
@@ -29,7 +31,8 @@ public class StatusEffect
             two.name == null ? one.name : two.name,
             two.duration == 0 ? one.duration : two.duration,
             two.instant,
-            two.statChange == null ? one.statChange : two.statChange
+            two.positive,
+            two.statChange == null ? one.statChange : StatData.Override(one.statChange, two.statChange)
         );
     }
 

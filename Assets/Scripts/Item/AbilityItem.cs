@@ -23,21 +23,21 @@ public class AbilityItem : Item
     {
         if (character.stats.mana >= manaCost)
         {
-            character.DamageMana(manaCost);
             if (attackTime >= cooldown)
             {
+                character.DamageMana(manaCost);
                 foreach (Attack attack in attacks)
                 {
                     attack.Shoot(character, character.pool);
                 }
                 attackTime = 0f;
-            }
 
-            if (statusEffects != null)
-            {
-                foreach (StatusEffect effect in statusEffects)
+                if (statusEffects != null)
                 {
-                    character.AddStatusEffect(effect);
+                    foreach (StatusEffect effect in statusEffects)
+                    {
+                        character.AddStatusEffect(effect);
+                    }
                 }
             }
         }

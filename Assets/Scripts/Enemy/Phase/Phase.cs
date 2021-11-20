@@ -12,7 +12,7 @@ public class Phase
     
     private float attackTime = 0f;
 
-    public void Start()
+    public void Start(Enemy enemy, Character character)
     {
         if (attacks != null)
         {
@@ -42,18 +42,23 @@ public class Phase
                     }
                 }
             }
+
+            foreach (Movement movement in movements)
+            {
+                movement.Start(enemy, character);
+            }
         }
     }
 
-    public void Run(Enemy enemy, Character character, ObjectPool pool)
+    public void Run(Entity entity, Character character, ObjectPool pool)
     {
         if (attacks != null)
         {
-            if (attackTime >= 20f / enemy.stats.attackSpeed)
+            if (attackTime >= 20f / entity.enemy.stats.attackSpeed)
             {
                 foreach (Attack attack in attacks)
                 {
-                    attack.Shoot(enemy, character, pool);
+                    attack.Shoot(entity.enemy, character, pool);
                 }
                 attackTime = 0f;
             }
@@ -62,7 +67,7 @@ public class Phase
         {
             foreach (Movement movement in movements)
             {
-                movement.Run(enemy, character);
+                movement.Run(entity, character);
             }
         }
     }

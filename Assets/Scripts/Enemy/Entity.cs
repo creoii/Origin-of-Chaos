@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour
     void Start()
     {
         enemy = EnemyBuilder.enemies[0];
-        enemy.Start();
+        enemy.Start(targetCharacter, transform.position);
         pool = GetComponentInChildren<ObjectPool>();
         currentPhase = enemy.phases[0];
 
@@ -22,7 +22,7 @@ public class Entity : MonoBehaviour
     void Update()
     {
         enemy.SetPosition(transform.position);
-        if (targetCharacter.isActiveAndEnabled) currentPhase.Run(enemy, targetCharacter, pool);
+        if (targetCharacter.isActiveAndEnabled) currentPhase.Run(this, targetCharacter, pool);
         currentPhase.IncrementAttackTime(Time.deltaTime);
     }
 

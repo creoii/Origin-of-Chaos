@@ -7,5 +7,10 @@
 			"minDamage": 5,
 			"maxDamage": 10
 		}
+	],
+	"movements": [
+		{
+			"name": "orbit"
+		}
 	]
 }

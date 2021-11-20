@@ -21,7 +21,6 @@ public class MovementBuilder
         foreach (string file in files)
         {
             Movement movement = JsonUtility.FromJson<Movement>(new StreamReader(file).ReadToEnd());
-            Debug.Log(movement.name);
             movements.Add(movement);
         }
     }
