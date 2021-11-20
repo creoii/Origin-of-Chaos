@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag.Equals("Character") && gameObject.tag.Equals("EnemyProjectile"))
         {
             Character character = collision.gameObject.GetComponent<Character>();
-            character.Damage(damage);
+            character.Damage(damage - character.stats.armor);
             if (attack.statusEffects != null)
             {
                 foreach (StatusEffect effect in attack.statusEffects)
@@ -68,7 +68,7 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.tag.Equals("Enemy") && gameObject.tag.Equals("PlayerProjectile"))
         {
             Entity entity = collision.gameObject.GetComponent<Entity>();
-            entity.Damage(damage);
+            entity.Damage(damage - entity.enemy.stats.armor);
             if (attack.statusEffects != null)
             {
                 foreach (StatusEffect effect in attack.statusEffects)

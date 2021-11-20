@@ -11,13 +11,14 @@ public class Attack
     public int projectileCount = 1;
     public float minDamage;
     public float maxDamage;
+    public bool ignoreArmor;
     public int angleOffset = 0;
     public int angleGap = 0;
     public bool onMouse = false;
     public MultiplierData acceleration = null;
     public StatusEffect[] statusEffects;
 
-    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration, StatusEffect[] statusEffects)
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, bool ignoreArmor, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration, StatusEffect[] statusEffects)
     {
         this.sprite = sprite;
         this.lifetime = lifetime;
@@ -25,6 +26,7 @@ public class Attack
         this.projectileCount = projectileCount;
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
+        this.ignoreArmor = ignoreArmor;
         this.angleOffset = angleOffset;
         this.angleGap = angleGap;
         this.onMouse = onMouse;
@@ -61,6 +63,7 @@ public class Attack
             two.projectileCount == 0 ? one.projectileCount : two.projectileCount,
             two.minDamage == 0 ? one.minDamage : two.minDamage,
             two.maxDamage == 0 ? one.maxDamage : two.maxDamage,
+            two.ignoreArmor,
             two.angleOffset == 0 ? one.angleOffset : two.angleOffset,
             two.angleGap == 0 ? one.angleGap : two.angleGap,
             two.onMouse,

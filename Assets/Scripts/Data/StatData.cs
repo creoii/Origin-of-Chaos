@@ -11,8 +11,10 @@ public class StatData
     public float attackSpeed;
     public float healthRegeneration;
     public float manaRegeneration;
+    public float armor;
+    public float attack;
 
-    public StatData(float maxHealth, float maxMana, float speed, float attackSpeed, float healthRegeneration, float manaRegeneration)
+    public StatData(float maxHealth, float maxMana, float speed, float attackSpeed, float healthRegeneration, float manaRegeneration, float armor, float attack)
     {
         this.maxHealth = maxHealth;
         health = maxHealth;
@@ -22,6 +24,8 @@ public class StatData
         this.attackSpeed = attackSpeed;
         this.healthRegeneration = healthRegeneration;
         this.manaRegeneration = manaRegeneration;
+        this.armor = armor;
+        this.attack = attack;
     }
 
     public StatData Add(StatData add)
@@ -34,6 +38,8 @@ public class StatData
         attackSpeed += add.attackSpeed;
         healthRegeneration += add.healthRegeneration;
         manaRegeneration += add.manaRegeneration;
+        armor += add.armor;
+        attack += add.attack;
         return this;
     }
 
@@ -47,6 +53,8 @@ public class StatData
         attackSpeed *= add.attackSpeed;
         healthRegeneration *= add.healthRegeneration;
         manaRegeneration *= add.manaRegeneration;
+        armor *= add.armor;
+        attack *= add.attack;
         return this;
     }
 
@@ -60,6 +68,8 @@ public class StatData
         attackSpeed -= add.attackSpeed;
         healthRegeneration -= add.healthRegeneration;
         manaRegeneration -= add.manaRegeneration;
+        armor -= add.armor;
+        attack -= add.attack;
         return this;
     }
 }
