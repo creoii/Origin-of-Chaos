@@ -4,17 +4,32 @@
 	"xp": 250.0,
 	"stats": {
 		"maxHealth": 500,
-		"attackSpeed": 25.0
+		"attackSpeed": 75.0
 	},
 	"phases": [
 		{
 			"name": "test1",
+			"attacks": [
+				{
+					"name": "test_attack_0",
+					"minDamage": 5,
+					"maxDamage": 10,
+					"angleChange": 10.0,
+					"target": "mouse"
+				}
+			],
 			"transition": {
 				"nextPhase": "test2"
 			}
 		},
 		{
 			"name": "test2",
+			"transition": {
+				"nextPhase": "test3"
+			}
+		},
+		{
+			"name": "test3",
 			"transition": {
 				"nextPhase": "test1"
 			}

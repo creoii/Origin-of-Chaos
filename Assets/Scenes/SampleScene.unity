@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4516856316152767141, guid: a099fecafbc52c54ab8b7d3fd5d8dacd, type: 3}
   pool: []
-  startCount: 10
+  startCount: 40
 --- !u!1 &941292195
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,9 +692,11 @@ MonoBehaviour:
       attack: 0
     isBoss: 0
     phases: []
+    phaseList: []
   targetCharacter: {fileID: 1415960450}
   pool: {fileID: 0}
   activeEffects: []
+  phaseRunning: 0
 --- !u!61 &965392801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -864,7 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8257331463092293970, guid: e00e5db4b64e0374ba49ff43f20967c5, type: 3}
   pool: []
-  startCount: 100
+  startCount: 50
 --- !u!1 &1415960446
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,11 +14,13 @@ public class Attack
     public bool ignoreArmor;
     public int angleOffset = 0;
     public int angleGap = 0;
+    public int angleChange;
     public bool onMouse = false;
+    public string target = null;
     public MultiplierData acceleration = null;
     public StatusEffect[] statusEffects;
 
-    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, bool ignoreArmor, int angleOffset, int angleGap, bool onMouse, MultiplierData acceleration, StatusEffect[] statusEffects)
+    public Attack(string sprite, float lifetime, float speed, int projectileCount, float minDamage, float maxDamage, bool ignoreArmor, int angleOffset, int angleGap, int angleChange, bool onMouse, string target, MultiplierData acceleration, StatusEffect[] statusEffects)
     {
         this.sprite = sprite;
         this.lifetime = lifetime;
@@ -29,7 +31,9 @@ public class Attack
         this.ignoreArmor = ignoreArmor;
         this.angleOffset = angleOffset;
         this.angleGap = angleGap;
+        this.angleChange = angleChange;
         this.onMouse = onMouse;
+        this.target = target;
         this.acceleration = acceleration;
         this.statusEffects = statusEffects;
     }
@@ -66,10 +70,27 @@ public class Attack
             two.ignoreArmor,
             two.angleOffset == 0 ? one.angleOffset : two.angleOffset,
             two.angleGap == 0 ? one.angleGap : two.angleGap,
+            two.angleChange == 0 ? one.angleChange : two.angleChange,
             two.onMouse,
+            two.target == null ? one.target : two.target,
             MultiplierData.Override(one.acceleration, two.acceleration),
             two.statusEffects == null ? one.statusEffects : two.statusEffects
         );
+    }
+
+    public Vector3 GetTargetPosition(string target, Enemy enemy, Character character)
+    {
+        switch (target)
+        {
+            case "mouse":
+                return MouseUtil.GetMouseWorldPos();
+            case "origin":
+                return enemy.GetOrigin();
+            case "self":
+                return enemy.GetPosition();
+            default:
+                return character.transform.position;
+        }
     }
 
     public void Shoot(Character character, ObjectPool pool)
@@ -98,7 +119,8 @@ public class Attack
         if (projectileCount > 0)
         {
             Vector3 position = onMouse ? MouseUtil.GetMouseWorldPos() : enemy.GetPosition();
-            float angle = MathUtil.ToAngle(character.transform.position - position) + angleOffset;
+            Vector3 targetPosition = GetTargetPosition(target, enemy, character);
+            float angle = MathUtil.ToAngle(targetPosition - position) + angleOffset;
             if (angle < 0) angle += 360f;
             if (projectileCount > 1) angle -= angleGap * (((projectileCount - 1f) / 2f) + 1);
 
@@ -107,8 +129,9 @@ public class Attack
                 GameObject obj = pool.GetObject();
                 if (obj != null)
                 {
-                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((character.transform.position - position).normalized, angle += angleGap), minDamage, maxDamage);
+                    obj.GetComponent<Projectile>().SetProperties(position, this, MathUtil.GetDirection((targetPosition - position).normalized, angle += angleGap), minDamage, maxDamage);
                     obj.SetActive(true);
+                    angleOffset += angleChange;
                 }
             }
         }

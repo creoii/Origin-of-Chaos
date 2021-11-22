@@ -1,0 +1,21 @@
+{
+	"name": "test3",
+	"duration": 10,
+	"attacks": [
+		{
+			"name": "spiral_attack"
+		},
+		{
+			"name": "spiral_attack",
+			"angleOffset": 90
+		},
+		{
+			"name": "spiral_attack",
+			"angleOffset": 180
+		},
+		{
+			"name": "spiral_attack",
+			"angleOffset": 270
+		}
+	]
+}

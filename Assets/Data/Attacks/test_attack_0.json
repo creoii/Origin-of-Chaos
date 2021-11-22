@@ -7,6 +7,7 @@
 	"minDamage": 2.0,
 	"maxDamage": 6.0,
 	"angleGap": 15,
+	"target": "player",
 	"acceleration": {
 		"rate": -0.003,
 		"multiplier": 1.5,
