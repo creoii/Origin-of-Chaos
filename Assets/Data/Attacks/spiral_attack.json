@@ -1,8 +1,8 @@
 {
 	"name": "spiral_attack",
 	"sprite": "void_bolt",
-	"minDamage": 6,
-	"maxDamage": 8,
+	"minDamage": 60,
+	"maxDamage": 80,
 	"speed": 1.0,
 	"lifetime": 4.0,
 	"projectileCount": 2,

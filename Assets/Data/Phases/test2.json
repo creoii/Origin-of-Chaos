@@ -4,13 +4,13 @@
 	"attacks": [
 		{
 			"name": "test_attack_0",
-			"minDamage": 2,
-			"maxDamage": 4
+			"minDamage": 20,
+			"maxDamage": 40
 		},
 		{
 			"name": "test_attack_0",
-			"minDamage": 2,
-			"maxDamage": 12,
+			"minDamage": 20,
+			"maxDamage": 120,
 			"angleOffset": 180
 		}
 	],

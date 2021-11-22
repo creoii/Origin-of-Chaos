@@ -11,6 +11,6 @@ public class MathUtil
 
     public static Vector3 GetDirection(Vector3 reference, float angle)
     {
-        return new Vector3(reference.x + Mathf.Cos(angle * Mathf.Deg2Rad), reference.y + Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
+        return new Vector3(reference.x + Mathf.Cos(angle * MathUtil.Deg2Rad), reference.y + Mathf.Sin(angle * MathUtil.Deg2Rad)).normalized;
     }
 }

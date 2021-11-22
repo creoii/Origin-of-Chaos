@@ -13,8 +13,8 @@
 			"attacks": [
 				{
 					"name": "test_attack_0",
-					"minDamage": 5,
-					"maxDamage": 10,
+					"minDamage": 20,
+					"maxDamage": 40,
 					"angleChange": 10.0
 				}
 			],

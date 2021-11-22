@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
 
         SpriteUtil.SetSprite(GetComponent<SpriteRenderer>(), "Sprites/Characters/Classes/" + playerClass.sprite);
 
-        StartCoroutine(UpdateRegeneration(stats.healthRegeneration, stats.manaRegeneration));
+        StartCoroutine(UpdateRegeneration(.12f * (stats.healthRegeneration + 8.3f), .12f * (stats.manaRegeneration + 8.3f)));
     }
 
     void Update()
