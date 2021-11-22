@@ -20,8 +20,7 @@ public class PhaseBuilder
         IEnumerable<string> files = Directory.EnumerateFiles(DATA_PATH, "*.json", SearchOption.AllDirectories);
         foreach (string file in files)
         {
-            Phase phase = JsonUtility.FromJson<Phase>(new StreamReader(file).ReadToEnd());
-            phases.Add(phase);
+            phases.Add(JsonUtility.FromJson<Phase>(new StreamReader(file).ReadToEnd()));
         }
     }
 }

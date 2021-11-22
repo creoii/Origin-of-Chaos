@@ -20,8 +20,7 @@ public class TransitionBuilder
         IEnumerable<string> files = Directory.EnumerateFiles(DATA_PATH, "*.json", SearchOption.AllDirectories);
         foreach (string file in files)
         {
-            Transition transition = JsonUtility.FromJson<Transition>(new StreamReader(file).ReadToEnd());
-            transitions.Add(transition);
+            transitions.Add(JsonUtility.FromJson<Transition>(new StreamReader(file).ReadToEnd()));
         }
     }
 }

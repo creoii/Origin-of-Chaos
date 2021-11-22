@@ -20,8 +20,7 @@ public class AttackBuilder
         IEnumerable<string> files = Directory.EnumerateFiles(DATA_PATH, "*.json", SearchOption.AllDirectories);
         foreach (string file in files)
         {
-            Attack attack = JsonUtility.FromJson<Attack>(new StreamReader(file).ReadToEnd());
-            attacks.Add(attack);
+            attacks.Add(JsonUtility.FromJson<Attack>(new StreamReader(file).ReadToEnd()));
         }
     }
 }

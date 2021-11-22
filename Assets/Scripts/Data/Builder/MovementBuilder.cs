@@ -20,8 +20,7 @@ public class MovementBuilder
         IEnumerable<string> files = Directory.EnumerateFiles(DATA_PATH, "*.json", SearchOption.AllDirectories);
         foreach (string file in files)
         {
-            Movement movement = JsonUtility.FromJson<Movement>(new StreamReader(file).ReadToEnd());
-            movements.Add(movement);
+            movements.Add(JsonUtility.FromJson<Movement>(new StreamReader(file).ReadToEnd()));
         }
     }
 }

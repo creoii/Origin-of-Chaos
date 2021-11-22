@@ -20,8 +20,7 @@ public class StatusEffectBuilder
         IEnumerable<string> files = Directory.EnumerateFiles(DATA_PATH, "*.json", SearchOption.AllDirectories);
         foreach (string file in files)
         {
-            StatusEffect effect = JsonUtility.FromJson<StatusEffect>(new StreamReader(file).ReadToEnd());
-            statusEffects.Add(effect);
+            statusEffects.Add(JsonUtility.FromJson<StatusEffect>(new StreamReader(file).ReadToEnd()));
         }
     }
 }
