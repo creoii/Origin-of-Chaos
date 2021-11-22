@@ -56,7 +56,7 @@ public class Entity : MonoBehaviour
 
     private Phase GetPhase(string name)
     {
-        foreach (Phase phase in enemy.phases)
+        foreach (Phase phase in enemy.phaseList)
         {
             if (phase.name == name) return phase;
         }

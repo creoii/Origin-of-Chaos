@@ -1,5 +1,6 @@
 ﻿public enum MovementType
 {
     Wander,
-    Orbit
+    Orbit,
+    Follow
 }

@@ -11,10 +11,15 @@ public class Movement
     public float orbitDistance;
     public float startSpeed;
     public PositionData orbitStartTranslation;
+    public float wanderRange;
+    public float minChangeThreshold;
+    public float maxChangeThreshold;
 
-    private Vector3 center;
+    private Vector3 targetPos;
+    private Vector3 wanderTarget;
+    private bool atTarget = true;
 
-    public Movement(string name, string type, string target, float speed, float orbitDistance, float startSpeed, PositionData orbitStartTranslation)
+    public Movement(string name, string type, string target, float speed, float orbitDistance, float startSpeed, PositionData orbitStartTranslation, float wanderRange, float minChangeThreshold, float maxChangeThreshold)
     {
         this.name = name;
         this.type = type;
@@ -23,6 +28,9 @@ public class Movement
         this.orbitDistance = orbitDistance;
         this.startSpeed = startSpeed;
         this.orbitStartTranslation = orbitStartTranslation;
+        this.wanderRange = wanderRange;
+        this.minChangeThreshold = minChangeThreshold;
+        this.maxChangeThreshold = maxChangeThreshold;
     }
 
     public static Movement Override(Movement one, Movement two)
@@ -34,16 +42,19 @@ public class Movement
             two.speed == 0 ? one.speed : two.speed,
             two.orbitDistance == 0 ? one.orbitDistance : two.orbitDistance,
             two.startSpeed == 0 ? one.startSpeed : two.startSpeed,
-            two.orbitStartTranslation == null ? one.orbitStartTranslation : PositionData.Override(one.orbitStartTranslation, two.orbitStartTranslation)
+            two.orbitStartTranslation == null ? one.orbitStartTranslation : PositionData.Override(one.orbitStartTranslation, two.orbitStartTranslation),
+            two.wanderRange == 0 ? one.wanderRange : two.wanderRange,
+            two.minChangeThreshold == 0 ? one.minChangeThreshold : two.minChangeThreshold,
+            two.maxChangeThreshold == 0 ? one.maxChangeThreshold : two.maxChangeThreshold
         );
     }
 
     public void Start(Enemy enemy, Character character)
     {
-        center = enemy.GetPosition();
-        if (target.Equals("origin")) center = enemy.GetOrigin();
-        if (target.Equals("player")) center = character.transform.position;
-        if (target.Equals("mouse")) center = MouseUtil.GetMouseWorldPos();
+        targetPos = enemy.GetPosition();
+        if (target.Equals("origin")) targetPos = enemy.GetOrigin();
+        else if (target.Equals("player")) targetPos = character.transform.position;
+        else if (target.Equals("mouse")) targetPos = MouseUtil.GetMouseWorldPos();
     }
 
     public void Run(Entity entity, Character character)
@@ -51,24 +62,31 @@ public class Movement
         switch (EnumUtil.Parse<MovementType>(type))
         {
             case MovementType.Wander:
-                RunWander(entity, center);
+                RunWander(entity, targetPos);
                 return;
             case MovementType.Orbit:
-                RunOrbit(entity, center);
+                RunOrbit(entity, targetPos);
+                return;
+            case MovementType.Follow:
+                RunFollow(entity, character);
                 return;
         }
     }
 
     void RunWander(Entity entity, Vector3 center)
     {
-        switch (target)
+        if (atTarget)
         {
-            case "self":
-                return;
-            case "player":
-                return;
-            case "origin":
-                return;
+            wanderTarget = VectorUtil.GetRandomPosition(new Vector3(center.x - wanderRange, center.y - wanderRange), new Vector3(center.x + wanderRange, center.y + wanderRange));
+            atTarget = false;
+        }
+        else
+        {
+            if (Vector3.Distance(entity.transform.position, wanderTarget) >= UnityEngine.Random.Range(minChangeThreshold, maxChangeThreshold))
+            {
+                entity.transform.position = Vector3.MoveTowards(entity.transform.position, wanderTarget, speed * Time.deltaTime);
+            }
+            else atTarget = true;
         }
     }
 
@@ -79,5 +97,13 @@ public class Movement
             entity.transform.position = Vector3.MoveTowards(entity.transform.position, orbitStartTranslation.GetAsVector3() * orbitDistance, startSpeed * Time.deltaTime);
         }
         //else entity.transform.RotateAround(center, -Vector3.forward, speed * Time.deltaTime);
+    }
+
+    void RunFollow(Entity entity, Character target)
+    {
+        if (Vector3.Distance(entity.transform.position, target.transform.position) >= UnityEngine.Random.Range(minChangeThreshold, maxChangeThreshold))
+        {
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, target.transform.position, speed * Time.deltaTime);
+        }
     }
 }

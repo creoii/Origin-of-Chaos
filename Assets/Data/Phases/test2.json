@@ -13,5 +13,10 @@
 			"maxDamage": 12,
 			"angleOffset": 180
 		}
+	],
+	"movements": [
+		{
+			"name": "follow"
+		}
 	]
 }
