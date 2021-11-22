@@ -81,7 +81,7 @@ public class Attack
         );
     }
 
-    public Vector3 GetTargetPosition(string target, Enemy enemy, Character character)
+    public Vector3 GetTargetPosition(string target, Enemy enemy, GameObject character)
     {
         switch (target)
         {
@@ -117,7 +117,7 @@ public class Attack
         }
     }
 
-    public void Shoot(Enemy enemy, Character character, ObjectPool pool)
+    public void Shoot(Enemy enemy, GameObject character, ObjectPool pool)
     {
         if (projectileCount > 0)
         {

@@ -47,10 +47,10 @@ public class Character : MonoBehaviour
     {
         if (stats.speed > 0)
         {
-            if (Input.GetKey(Game.settings.leftKey)) movement += Vector3.left;
-            if (Input.GetKey(Game.settings.downKey)) movement += Vector3.down;
-            if (Input.GetKey(Game.settings.upKey)) movement += Vector3.up;
-            if (Input.GetKey(Game.settings.rightKey)) movement += Vector3.right;
+            if (Input.GetKey(Game.settings.leftKey)) movement.x -= 1f;
+            if (Input.GetKey(Game.settings.downKey)) movement.y -= 1f;
+            if (Input.GetKey(Game.settings.upKey)) movement.y += 1f;
+            if (Input.GetKey(Game.settings.rightKey)) movement.x += 1f;
 
             movement *= 1 / (4f + (stats.speed * .07467f));
             if (movement != Vector3.zero)
@@ -183,5 +183,77 @@ public class Character : MonoBehaviour
     {
         stats.health = 0;
         gameObject.SetActive(false);
+    }
+
+    public void AddMaxHealth(float maxHealth)
+    {
+        if (stats.maxHealth + maxHealth > playerClass.maxStats.maxHealth)
+        {
+            stats.maxHealth = playerClass.maxStats.maxHealth;
+        }
+        else stats.maxHealth += maxHealth;
+    }
+
+    public void AddMaxMana(float maxHealth)
+    {
+        if (stats.maxMana + maxHealth > playerClass.maxStats.maxMana)
+        {
+            stats.maxMana = playerClass.maxStats.maxMana;
+        }
+        else stats.maxMana += maxHealth;
+    }
+
+    public void AddSpeed(float maxHealth)
+    {
+        if (stats.speed + maxHealth > playerClass.maxStats.speed)
+        {
+            stats.speed = playerClass.maxStats.speed;
+        }
+        else stats.speed += maxHealth;
+    }
+
+    public void AddAttackSpeed(float maxHealth)
+    {
+        if (stats.attackSpeed + maxHealth > playerClass.maxStats.attackSpeed)
+        {
+            stats.attackSpeed = playerClass.maxStats.attackSpeed;
+        }
+        else stats.attackSpeed += maxHealth;
+    }
+
+    public void AddArmor(float maxHealth)
+    {
+        if (stats.armor + maxHealth > playerClass.maxStats.armor)
+        {
+            stats.armor = playerClass.maxStats.armor;
+        }
+        else stats.armor += maxHealth;
+    }
+
+    public void AddAttack(float maxHealth)
+    {
+        if (stats.attack + maxHealth > playerClass.maxStats.attack)
+        {
+            stats.attack = playerClass.maxStats.attack;
+        }
+        else stats.attack += maxHealth;
+    }
+
+    public void AddHealthRegeneration(float maxHealth)
+    {
+        if (stats.healthRegeneration + maxHealth > playerClass.maxStats.healthRegeneration)
+        {
+            stats.healthRegeneration = playerClass.maxStats.healthRegeneration;
+        }
+        else stats.healthRegeneration += maxHealth;
+    }
+
+    public void AddManaRegeneration(float maxHealth)
+    {
+        if (stats.manaRegeneration + maxHealth > playerClass.maxStats.manaRegeneration)
+        {
+            stats.manaRegeneration = playerClass.maxStats.manaRegeneration;
+        }
+        else stats.manaRegeneration += maxHealth;
     }
 }

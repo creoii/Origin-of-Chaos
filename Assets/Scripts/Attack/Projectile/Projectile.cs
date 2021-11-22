@@ -67,13 +67,13 @@ public class Projectile : MonoBehaviour
         }
         else if (collision.gameObject.tag.Equals("Enemy") && gameObject.tag.Equals("PlayerProjectile"))
         {
-            Entity entity = collision.gameObject.GetComponent<Entity>();
-            entity.Damage(damage - entity.enemy.stats.armor);
+            Enemy enemy= collision.gameObject.GetComponent<Entity>().enemy;
+            enemy.Damage(damage - enemy.stats.armor);
             if (attack.statusEffects != null)
             {
                 foreach (StatusEffect effect in attack.statusEffects)
                 {
-                    entity.AddStatusEffect(effect);
+                    enemy.AddStatusEffect(effect);
                 }
             }
             gameObject.SetActive(false);

@@ -49,7 +49,7 @@ public class Movement
         );
     }
 
-    public void Start(Enemy enemy, Character character)
+    public void Start(Enemy enemy, GameObject character)
     {
         targetPos = enemy.GetPosition();
         if (target.Equals("origin")) targetPos = enemy.GetOrigin();
@@ -57,23 +57,23 @@ public class Movement
         else if (target.Equals("mouse")) targetPos = MouseUtil.GetMouseWorldPos();
     }
 
-    public void Run(Entity entity, Character character)
+    public void Run(Enemy enemy, GameObject character)
     {
         switch (EnumUtil.Parse<MovementType>(type))
         {
             case MovementType.Wander:
-                RunWander(entity, targetPos);
+                RunWander(enemy, targetPos);
                 return;
             case MovementType.Orbit:
-                RunOrbit(entity, targetPos);
+                RunOrbit(enemy, targetPos);
                 return;
             case MovementType.Follow:
-                RunFollow(entity, character);
+                RunFollow(enemy, character);
                 return;
         }
     }
 
-    void RunWander(Entity entity, Vector3 center)
+    void RunWander(Enemy enemy, Vector3 center)
     {
         if (atTarget)
         {
@@ -82,28 +82,28 @@ public class Movement
         }
         else
         {
-            if (Vector3.Distance(entity.transform.position, wanderTarget) >= UnityEngine.Random.Range(minChangeThreshold, maxChangeThreshold))
+            if (Vector3.Distance(enemy.GetPosition(), wanderTarget) >= UnityEngine.Random.Range(minChangeThreshold, maxChangeThreshold))
             {
-                entity.transform.position = Vector3.MoveTowards(entity.transform.position, wanderTarget, speed * Time.deltaTime);
+                enemy.SetPosition(Vector3.MoveTowards(enemy.GetPosition(), wanderTarget, speed * Time.deltaTime));
             }
             else atTarget = true;
         }
     }
 
-    void RunOrbit(Entity entity, Vector3 center)
+    void RunOrbit(Enemy enemy, Vector3 center)
     {
-        if (Vector3.Distance(entity.transform.position, orbitStartTranslation.GetAsVector3() * orbitDistance) >= orbitDistance)
+        if (Vector3.Distance(enemy.GetPosition(), orbitStartTranslation.GetAsVector3() * orbitDistance) >= orbitDistance)
         {
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, orbitStartTranslation.GetAsVector3() * orbitDistance, startSpeed * Time.deltaTime);
+            enemy.SetPosition(Vector3.MoveTowards(enemy.GetPosition(), orbitStartTranslation.GetAsVector3() * orbitDistance, startSpeed * Time.deltaTime));
         }
         //else entity.transform.RotateAround(center, -Vector3.forward, speed * Time.deltaTime);
     }
 
-    void RunFollow(Entity entity, Character target)
+    void RunFollow(Enemy enemy, GameObject target)
     {
-        if (Vector3.Distance(entity.transform.position, target.transform.position) >= UnityEngine.Random.Range(minChangeThreshold, maxChangeThreshold))
+        if (Vector3.Distance(enemy.GetPosition(), target.transform.position) >= UnityEngine.Random.Range(minChangeThreshold, maxChangeThreshold))
         {
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, target.transform.position, speed * Time.deltaTime);
+            enemy.SetPosition(Vector3.MoveTowards(enemy.GetPosition(), target.transform.position, speed * Time.deltaTime));
         }
     }
 }

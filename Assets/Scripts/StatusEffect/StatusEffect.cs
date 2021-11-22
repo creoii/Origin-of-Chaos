@@ -44,11 +44,11 @@ public class StatusEffect
         if (!instant) character.stats.Subtract(statChange);
     }
 
-    public IEnumerator Apply(Entity entity)
+    public IEnumerator Apply(Enemy enemy)
     {
-        entity.enemy.stats.Add(statChange);
+        enemy.stats.Add(statChange);
         yield return new WaitForSeconds(duration);
-        entity.activeEffects.Remove(this);
-        if (!instant) entity.enemy.stats.Subtract(statChange);
+        enemy.activeEffects.Remove(this);
+        if (!instant) enemy.stats.Subtract(statChange);
     }
 }
