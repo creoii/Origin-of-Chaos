@@ -1,6 +1,6 @@
 {
 	"name": "test2",
-	"duration": 10.0,
+	"duration": 5.0,
 	"attacks": [
 		{
 			"name": "test_attack_0",

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [Serializable]
@@ -50,7 +51,7 @@ public class Phase
         }
     }
 
-    public void Run(Entity entity, Character character, ObjectPool pool)
+    public void Update(Entity entity, Character character, ObjectPool pool)
     {
         if (attacks != null)
         {
@@ -70,6 +71,12 @@ public class Phase
                 movement.Run(entity, character);
             }
         }
+    }
+
+    public IEnumerator Run(Entity entity)
+    {
+        yield return new WaitForSeconds(duration);
+        entity.phaseRunning = false;
     }
 
     public void IncrementAttackTime(float f)

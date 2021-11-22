@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     public ObjectPool pool;
     private Phase currentPhase;
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
+    public bool phaseRunning = true;
 
     void Start()
     {
@@ -22,8 +23,20 @@ public class Entity : MonoBehaviour
     void Update()
     {
         enemy.SetPosition(transform.position);
-        if (targetCharacter.isActiveAndEnabled) currentPhase.Run(this, targetCharacter, pool);
-        currentPhase.IncrementAttackTime(Time.deltaTime);
+        if (targetCharacter.isActiveAndEnabled)
+        {
+            if (!phaseRunning)
+            {
+                StartCoroutine(currentPhase.Run(this));
+                phaseRunning = true;
+                currentPhase = enemy.GetNextPhase(currentPhase);
+            }
+            else
+            {
+                currentPhase.Update(this, targetCharacter, pool);
+            }
+            currentPhase.IncrementAttackTime(Time.deltaTime);
+        }
     }
 
     public void AddStatusEffect(StatusEffect effect)

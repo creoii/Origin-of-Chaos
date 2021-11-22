@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -12,6 +12,7 @@ public class Enemy
     public bool isBoss = false;
     public Phase[] phases;
 
+    public List<Phase> phaseList = new List<Phase>();
     private Vector3 origin;
     private Vector3 position;
 
@@ -46,9 +47,21 @@ public class Enemy
 
             foreach (Phase phase in phases)
             {
+                phaseList.Add(phase);
                 phase.Start(this, character);
             }
         }
+    }
+
+    public Phase GetNextPhase(Phase phase)
+    {
+        foreach (Phase phase1 in phaseList)
+        {
+            if (phase1.name.Equals(phase.transition.nextPhase)) return phase;
+        }
+
+        if (phaseList.IndexOf(phase) + 1 >= phaseList.Count) return phaseList[0];
+        else return phaseList[phaseList.IndexOf(phase) + 1];
     }
 
     public void SetPosition(Vector3 position)
