@@ -6,6 +6,7 @@
 	"speed": 1.0,
 	"lifetime": 4.0,
 	"projectileCount": 2,
+	"rateOfFire": 4.5,
 	"angleGap": 10,
 	"angleChange": 10.0,
 	"target": "self"

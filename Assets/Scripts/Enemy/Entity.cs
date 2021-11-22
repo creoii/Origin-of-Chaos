@@ -54,15 +54,6 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private Phase GetPhase(string name)
-    {
-        foreach (Phase phase in enemy.phaseList)
-        {
-            if (phase.name == name) return phase;
-        }
-        return null;
-    }
-
     public void Damage(float amount)
     {
         if (enemy.stats.health - amount < 0)

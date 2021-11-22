@@ -7,6 +7,7 @@ public class Phase
 {
     public string name;
     public float duration;
+    public float delay;
     public Attack[] attacks;
     public Movement[] movements;
     public Transition transition;
@@ -75,7 +76,7 @@ public class Phase
 
     public IEnumerator Run(Entity entity)
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration + delay);
         entity.phaseRunning = false;
     }
 

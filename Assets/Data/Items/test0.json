@@ -5,14 +5,15 @@
 	"itemType": "Sword",
 	"rarity": "Common",
 	"maxSigils": 2,
-	"rateOfFire": 4.5,
 	"attacks": [
 		{
 			"name": "test_attack_0",
+			"rateOfFire": 0.1,
 			"angleOffset": -20
 		},
 		{
 			"name": "test_attack_0",
+			"rateOfFire": 1.5,
 			"angleOffset": 20
 		}
 	]

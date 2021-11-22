@@ -4,14 +4,12 @@ using UnityEngine;
 [Serializable]
 public class WeaponItem : Item
 {
-    public float rateOfFire;
     public Attack[] attacks;
     public SigilItem[] sigils;
     private float attackTime = 0f;
 
-    public WeaponItem(string name, string description, string sprite, ItemType itemType, ItemRarity rarity, int maxSigils, Attack[] attacks, float rateOfFire) : base(name, description, sprite, itemType.ToString(), rarity.ToString(), maxSigils)
+    public WeaponItem(string name, string description, string sprite, ItemType itemType, ItemRarity rarity, int maxSigils, Attack[] attacks) : base(name, description, sprite, itemType.ToString(), rarity.ToString(), maxSigils)
     {
-        this.rateOfFire = rateOfFire;
         this.attacks = attacks;
         sigils = new SigilItem[maxSigils];
     }
@@ -34,14 +32,15 @@ public class WeaponItem : Item
 
     public void Use(Character character)
     {
-        if (attackTime >= 20f / character.stats.attackSpeed / rateOfFire)
+        foreach (Attack attack in attacks)
         {
-            foreach (Attack attack in attacks)
+            if (attackTime >= 1f / (.08666f * (character.stats.attackSpeed + 17.3f) * attack.rateOfFire))
             {
                 attack.Shoot(character, character.pool);
+                attackTime = 0f;
             }
-            attackTime = 0f;
         }
+        
 
         for (int i = 0; i < sigils.Length; ++i)
         {

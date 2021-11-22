@@ -5,7 +5,7 @@
 	"itemType": "Helm",
 	"rarity": "Mythical",
 	"maxSigils": 3,
-	"manaCost": 25,
+	"manaCost": 80,
 	"cooldown": 0.5,
 	"attacks": [
 		{

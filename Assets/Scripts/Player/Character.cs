@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
 
     void Awake()
     {
-        stats = playerClass.baseStats;
+        stats = playerClass.maxStats;
     }
 
     void Start()
@@ -52,7 +52,7 @@ public class Character : MonoBehaviour
             if (Input.GetKey(Game.settings.upKey)) movement += Vector3.up;
             if (Input.GetKey(Game.settings.rightKey)) movement += Vector3.right;
 
-            movement *= stats.speed * Time.deltaTime;
+            movement *= 1 / (4f + (stats.speed * .07467f));
             if (movement != Vector3.zero)
             {
                 transform.position += movement * movementModifier;
@@ -179,7 +179,7 @@ public class Character : MonoBehaviour
         playerInterface.UpdateManaBar();
     }
 
-    private void Kill()
+    void Kill()
     {
         stats.health = 0;
         gameObject.SetActive(false);

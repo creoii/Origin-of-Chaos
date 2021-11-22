@@ -9,13 +9,13 @@ public class Projectile : MonoBehaviour
     private float damage;
     private float life;
 
-    public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction, float minDamage, float maxDamage)
+    public Projectile SetProperties(Vector3 position, Attack attack, Vector3 direction, float damage)
     {
         transform.position = position;
         this.attack = attack;
         speed = attack.speed;
         rate = attack.acceleration.rate;
-        damage = Mathf.RoundToInt(Random.Range(minDamage, maxDamage));
+        this.damage = damage;
         this.direction = direction;
         return this;
     }
