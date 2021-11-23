@@ -585,9 +585,9 @@ GameObject:
   m_Component:
   - component: {fileID: 965392799}
   - component: {fileID: 965392798}
-  - component: {fileID: 965392800}
   - component: {fileID: 965392801}
   - component: {fileID: 965392802}
+  - component: {fileID: 965392803}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -663,40 +663,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &965392800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965392797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1beca841170ff8b49963b512f23a742a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy:
-    name: 
-    sprite: 
-    xp: 0
-    stats:
-      maxHealth: 0
-      health: 0
-      maxMana: 0
-      mana: 0
-      speed: 0
-      attackSpeed: 0
-      healthRegeneration: 0
-      manaRegeneration: 0
-      armor: 0
-      attack: 0
-    isBoss: 0
-    phases: []
-    phaseList: []
-  targetCharacter: {fileID: 1415960450}
-  pool: {fileID: 0}
-  activeEffects: []
-  phaseRunning: 0
 --- !u!61 &965392801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -744,6 +710,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &965392803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965392797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1beca841170ff8b49963b512f23a742a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy:
+    name: 
+    sprite: 
+    xp: 0
+    stats:
+      maxHealth: 0
+      health: 0
+      maxMana: 0
+      mana: 0
+      speed: 0
+      attackSpeed: 0
+      healthRegeneration: 0
+      manaRegeneration: 0
+      armor: 0
+      attack: 0
+    isBoss: 0
+    phases: []
+    phaseList: []
+    phaseRunning: 0
+    activeEffects: []
+    targetCharacter: {fileID: 1415960446}
+  pool: {fileID: 858706867}
 --- !u!1 &1332153919
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,7 @@ public class Slot
         if (CanSetItem(item))
         {
             this.item = item;
+            this.item.SetPosition(transform.position);
             empty = false;
         }
     }

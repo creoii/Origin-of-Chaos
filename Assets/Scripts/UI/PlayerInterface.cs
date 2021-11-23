@@ -21,10 +21,15 @@ public class PlayerInterface : MonoBehaviour
         manaBar.color = Color.blue;
     }
 
-    private void Update()
+    void Update()
     {
         //should only be called when changing inventory slots
         UpdateInventory();
+    }
+
+    void OnMouseDrag()
+    {
+        Debug.Log("mouse drag");
     }
 
     public void UpdateHealthBar()
