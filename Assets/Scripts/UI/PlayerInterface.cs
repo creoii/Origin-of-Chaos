@@ -34,11 +34,15 @@ public class PlayerInterface : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.transform.localScale = new Vector3(character.stats.health / character.stats.maxHealth, 1f, 1f);
+        if (character.inCombat <= 0f && character.stats.health >= character.stats.maxHealth) healthBar.color = Color.clear;
+        else
+        {
+            healthBar.transform.localScale = new Vector3(character.stats.health / character.stats.maxHealth, 1f, 1f);
 
-        if (character.stats.health < character.stats.maxHealth * .2f) healthBar.color = Color.red;
-        else if (character.stats.health < character.stats.maxHealth * .5f) healthBar.color = Color.yellow;
-        else healthBar.color = Color.green;
+            if (character.stats.health < character.stats.maxHealth * .2f) healthBar.color = Color.red;
+            else if (character.stats.health < character.stats.maxHealth * .5f) healthBar.color = Color.yellow;
+            else healthBar.color = Color.green;
+        }
     }
 
     public void UpdateManaBar()

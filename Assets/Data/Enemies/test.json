@@ -3,7 +3,7 @@
 	"sprite": "skeleton",
 	"xp": 250.0,
 	"stats": {
-		"maxHealth": 500,
+		"maxHealth": 100,
 		"attackSpeed": 75.0,
 		"attack": 50.0
 	},
@@ -13,8 +13,8 @@
 			"attacks": [
 				{
 					"name": "test_attack_0",
-					"minDamage": 20,
-					"maxDamage": 40,
+					"minDamage": 10,
+					"maxDamage": 20,
 					"angleChange": 10.0
 				}
 			],

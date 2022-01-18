@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     public StatData stats;
     public LevelData level = new LevelData();
     public List<StatusEffect> activeEffects = new List<StatusEffect>();
+    public float inCombat = 0f;
 
     private Vector3 movement;
     private float movementModifier = .1f;
@@ -41,6 +42,9 @@ public class Character : MonoBehaviour
         UpdateInventory(playerClass.classInventory);
         if (Input.GetKey(KeyCode.Mouse0)) UpdateAttacks(playerClass.classInventory);
         if (Input.GetKey(Game.settings.useAbilityKey)) UpdateAbilities();
+
+        if (inCombat >= 0f) inCombat -= Time.deltaTime;
+        else inCombat = 0f;
     }
 
     void UpdateMovement()
@@ -166,6 +170,7 @@ public class Character : MonoBehaviour
             Kill();
         }
         else stats.health -= amount;
+        inCombat = 5f;
         playerInterface.UpdateHealthBar();
     }
 

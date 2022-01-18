@@ -19,5 +19,7 @@ public class Entity : MonoBehaviour
     {
         transform.position = enemy.GetPosition();
         enemy.UpdatePhase(pool);
+
+        if (enemy.stats.health <= 0) gameObject.SetActive(false);
     }
 }
