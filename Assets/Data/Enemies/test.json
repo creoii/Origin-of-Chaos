@@ -4,8 +4,8 @@
 	"xp": 250.0,
 	"stats": {
 		"maxHealth": 100,
-		"attackSpeed": 75.0,
-		"attack": 50.0
+		"attackSpeed": 50.0,
+		"attack": 40.0
 	},
 	"phases": [
 		{

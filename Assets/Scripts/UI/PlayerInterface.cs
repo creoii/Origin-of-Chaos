@@ -5,6 +5,7 @@ public class PlayerInterface : MonoBehaviour
 {
     public Character character;
     public Canvas canvas;
+    public SpriteRenderer heldItem;
     public Image healthBar;
     public Image manaBar;
     public Image[] slots = new Image[4];
@@ -58,6 +59,7 @@ public class PlayerInterface : MonoBehaviour
             if (item.sprite != null)
             {
                 SpriteUtil.SetSprite(slots[i], "Sprites/Items/" + item.sprite);
+                if (i == 0) SpriteUtil.SetSprite(heldItem, "Sprites/Items/" + item.sprite);
             }
         }
     }
